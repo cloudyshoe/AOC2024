@@ -30,9 +30,8 @@ func PartOne(input []string) int {
 	slices.Sort(left)
 	slices.Sort(right)
 
-	for i := 0; i < len(left); i++ {
-		dist := intAbs(left[i] - right[i])
-		result += dist
+	for i := range left {
+		result += intAbs(left[i] - right[i])
 	}
 
 	return result
@@ -49,7 +48,7 @@ func PartTwo(input []string) int {
 		tmp := strings.Split(line, "   ")
 		left[i], _ = strconv.Atoi(tmp[0])
 		right, _ := strconv.Atoi(tmp[1])
-		counts[right] += 1
+		counts[right]++
 	}
 
 	for _, num := range left {
