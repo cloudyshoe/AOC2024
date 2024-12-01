@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-func intAbs(x, y int) int {
-	if x > y {
-		return x - y
+func intAbs(x int) int {
+	if x < 0 {
+		return -x
 	}
-	return y - x
+	return x
 }
 
 func PartOne(input []string) int {
@@ -31,7 +31,7 @@ func PartOne(input []string) int {
 	slices.Sort(right)
 
 	for i := 0; i < len(left); i++ {
-		dist := intAbs(left[i], right[i])
+		dist := intAbs(left[i] - right[i])
 		result += dist
 	}
 
@@ -41,16 +41,15 @@ func PartOne(input []string) int {
 func PartTwo(input []string) int {
 	result := 0
 	listLen := len(input)
-	counts := make(map[int]int)
+	counts := make(map[int]int, listLen)
 
 	left := make([]int, listLen)
-	right := make([]int, listLen)
 
 	for i, line := range input {
 		tmp := strings.Split(line, "   ")
 		left[i], _ = strconv.Atoi(tmp[0])
-		right[i], _ = strconv.Atoi(tmp[1])
-		counts[right[i]] += 1
+		right, _ := strconv.Atoi(tmp[1])
+		counts[right] += 1
 	}
 
 	for _, num := range left {
