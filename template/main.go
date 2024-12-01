@@ -20,8 +20,7 @@ func PartTwo(input []string) int {
 
 func main () {
     inputFile, _ := os.ReadFile("input.txt")
-    inputLen := len(inputFile)
-    input := strings.Split(string(inputFile[:inputLen-1]), "\n")
+    input := strings.Split(string(inputFile), "\n")
 
     partOneResult := PartOne(input)
     fmt.Printf("Part One Result: %d\n", partOneResult)
