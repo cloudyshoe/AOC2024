@@ -38,7 +38,7 @@ func BenchmarkPartOne(b *testing.B) {
     input := strings.Split(string(inputFile), "\n")
 
     for i := 0; i < b.N; i++ {
-        PartOne(&input)
+        PartOne(input)
     }
 }
 
@@ -48,7 +48,7 @@ func BenchmarkPartTwo(b *testing.B) {
     input := strings.Split(string(inputFile), "\n")
 
     for i := 0; i < b.N; i++ {
-        PartTwo(&input)
+        PartTwo(input)
     }
 }
 */
