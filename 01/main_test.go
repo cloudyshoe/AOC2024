@@ -1,35 +1,33 @@
 package main
 
 import (
-    "testing"
-    "os"
-    "strings"
+	"os"
+	"strings"
+	"testing"
 )
 
 func TestPartOne(t *testing.T) {
-    inputFile, _ := os.ReadFile("example.txt")
-    inputLen := len(inputFile)
-    input := strings.Split(string(inputFile[:inputLen-1]), "\n")
-    want := PartOne(input)
+	inputFile, _ := os.ReadFile("example.txt")
+	input := strings.Split(string(inputFile), "\n")
+	want := 11
 
-    got := PartOne(input)
+	got := PartOne(input)
 
-    if got != want {
-        t.Errorf("expected '%d' but got '%d'", want, got)
-    }
+	if got != want {
+		t.Errorf("expected '%d' but got '%d'", want, got)
+	}
 }
 
 func TestPartTwo(t *testing.T) {
-    inputFile, _ := os.ReadFile("example.txt")
-    inputLen := len(inputFile)
-    input := strings.Split(string(inputFile[:inputLen-1]), "\n")
-    want := PartTwo(input)
+	inputFile, _ := os.ReadFile("example.txt")
+	input := strings.Split(string(inputFile), "\n")
+	want := 31
 
-    got := PartTwo(input)
+	got := PartTwo(input)
 
-    if got != want {
-        t.Errorf("expected '%d' but got '%d'", want, got)
-    }
+	if got != want {
+		t.Errorf("expected '%d' but got '%d'", want, got)
+	}
 }
 
 /*
