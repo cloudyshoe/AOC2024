@@ -32,20 +32,18 @@ func TestPartTwo(t *testing.T) {
 
 func BenchmarkPartOne(b *testing.B) {
     inputFile, _ := os.ReadFile("input.txt")
-    inputLen := len(inputFile)
-    input := strings.Split(string(inputFile[:inputLen-1]), "\n")
+    input := strings.Split(string(inputFile), "\n")
 
     for i := 0; i < b.N; i++ {
-        PartOne(&input)
+        PartOne(input)
     }
 }
 
 func BenchmarkPartTwo(b *testing.B) {
     inputFile, _ := os.ReadFile("input.txt")
-    inputLen := len(inputFile)
-    input := strings.Split(string(inputFile[:inputLen-1]), "\n")
+    input := strings.Split(string(inputFile), "\n")
 
     for i := 0; i < b.N; i++ {
-        PartTwo(&input)
+        PartTwo(input)
     }
 }
