@@ -48,26 +48,17 @@ func safetyCheckPartTwo(levels []int) int {
 		return 1
 	}
 
-	for i := 1; i < len(levels); i++ {
+	for i := 0; i < len(levels); i++ {
 		newLevels := make([]int, len(levels))
 		copy(newLevels, levels)
-		newLevels = slices.Delete(newLevels, i-1, i)
-		blah := safetyCheck(newLevels)
-		if blah == 1 {
+		newLevels = slices.Delete(newLevels, i, i+1)
+		safe := safetyCheck(newLevels)
+		if safe == 1 {
 			return 1
-		}
-
-		if i == len(levels)-1 {
-			newLevels = levels[:i]
-			blah = safetyCheck(newLevels)
-			if blah == 1 {
-				return 1
-			}
-			return 0
 		}
 	}
 
-	return 1
+	return 0
 }
 
 func PartOne(input []string) int {
