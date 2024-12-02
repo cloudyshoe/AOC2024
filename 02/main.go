@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"slices"
 	"strconv"
 	"strings"
 )
@@ -48,10 +47,9 @@ func safetyCheckPartTwo(levels []int) int {
 		return 1
 	}
 
-	for i := 0; i < len(levels); i++ {
-		newLevels := make([]int, len(levels))
-		copy(newLevels, levels)
-		newLevels = slices.Delete(newLevels, i, i+1)
+	for i := range levels {
+		newLevels := append([]int{}, levels[:i]...)
+		newLevels = append(newLevels, levels[i+1:]...)
 		safe := safetyCheck(newLevels)
 		if safe == 1 {
 			return 1
@@ -65,7 +63,7 @@ func PartOne(input []string) int {
 	result := 0
 
 	for _, line := range input {
-		levels := strings.Split(line, " ")
+		levels := strings.Fields(line)
 		levelsInt := make([]int, len(levels))
 
 		for i, level := range levels {
@@ -81,7 +79,7 @@ func PartTwo(input []string) int {
 	result := 0
 
 	for _, line := range input {
-		levels := strings.Split(line, " ")
+		levels := strings.Fields(line)
 		levelsInt := make([]int, len(levels))
 
 		for i, level := range levels {
