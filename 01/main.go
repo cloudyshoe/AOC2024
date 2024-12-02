@@ -22,7 +22,7 @@ func PartOne(input []string) int {
 	right := make([]int, listLen)
 
 	for i, line := range input {
-		tmp := strings.Split(line, "   ")
+		tmp := strings.Fields(line)
 		left[i], _ = strconv.Atoi(tmp[0])
 		right[i], _ = strconv.Atoi(tmp[1])
 	}
@@ -45,7 +45,7 @@ func PartTwo(input []string) int {
 	left := make([]int, listLen)
 
 	for i, line := range input {
-		tmp := strings.Split(line, "   ")
+		tmp := strings.Fields(line)
 		left[i], _ = strconv.Atoi(tmp[0])
 		right, _ := strconv.Atoi(tmp[1])
 		counts[right]++
