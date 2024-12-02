@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -24,17 +25,44 @@ func sign(x int) int {
 	return 1
 }
 
-func safetyCheck(levels []string) int {
-	levelsInt := make([]int, len(levels))
+func safetyCheck(levels []int) int {
 
-	for i, level := range levels {
-		levelsInt[i], _ = strconv.Atoi(level)
+	firstSign := sign(levels[1] - levels[0])
+
+	if firstSign == 0 {
+		return 0
 	}
 
-	firstSign := sign(levelsInt[1] - levelsInt[0])
+	for i := 1; i < len(levels); i++ {
+		if sign(levels[i]-levels[i-1]) != firstSign || abs(levels[i]-levels[i-1]) > 3 {
+			return 0
+		}
+	}
 
-	for i := 1; i < len(levelsInt); i++ {
-		if sign(levelsInt[i]-levelsInt[i-1]) != firstSign || abs(levelsInt[i]-levelsInt[i-1]) > 3 {
+	return 1
+}
+
+func safetyCheckPartTwo(levels []int) int {
+
+	if safetyCheck(levels) == 1 {
+		return 1
+	}
+
+	for i := 1; i < len(levels); i++ {
+		newLevels := make([]int, len(levels))
+		copy(newLevels, levels)
+		newLevels = slices.Delete(newLevels, i-1, i)
+		blah := safetyCheck(newLevels)
+		if blah == 1 {
+			return 1
+		}
+
+		if i == len(levels)-1 {
+			newLevels = levels[:i]
+			blah = safetyCheck(newLevels)
+			if blah == 1 {
+				return 1
+			}
 			return 0
 		}
 	}
@@ -47,7 +75,12 @@ func PartOne(input []string) int {
 
 	for _, line := range input {
 		levels := strings.Split(line, " ")
-		result += safetyCheck(levels)
+		levelsInt := make([]int, len(levels))
+
+		for i, level := range levels {
+			levelsInt[i], _ = strconv.Atoi(level)
+		}
+		result += safetyCheck(levelsInt)
 	}
 
 	return result
@@ -58,7 +91,12 @@ func PartTwo(input []string) int {
 
 	for _, line := range input {
 		levels := strings.Split(line, " ")
-		result += safetyCheck(levels)
+		levelsInt := make([]int, len(levels))
+
+		for i, level := range levels {
+			levelsInt[i], _ = strconv.Atoi(level)
+		}
+		result += safetyCheckPartTwo(levelsInt)
 	}
 
 	return result
