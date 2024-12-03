@@ -39,11 +39,29 @@ func BenchmarkPartOne(b *testing.B) {
 	}
 }
 
+func BenchmarkPartOneParser(b *testing.B) {
+	inputFile, _ := os.ReadFile("input.txt")
+	input := strings.Split(string(inputFile), "\n")
+
+	for i := 0; i < b.N; i++ {
+		PartOneParser(input)
+	}
+}
+
 func BenchmarkPartTwo(b *testing.B) {
 	inputFile, _ := os.ReadFile("input.txt")
 	input := strings.Split(string(inputFile), "\n")
 
 	for i := 0; i < b.N; i++ {
 		PartTwo(input)
+	}
+}
+
+func BenchmarkPartTwoParser(b *testing.B) {
+	inputFile, _ := os.ReadFile("input.txt")
+	input := strings.Split(string(inputFile), "\n")
+
+	for i := 0; i < b.N; i++ {
+		PartTwoParser(input)
 	}
 }
