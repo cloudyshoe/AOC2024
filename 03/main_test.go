@@ -19,9 +19,9 @@ func TestPartOne(t *testing.T) {
 }
 
 func TestPartTwo(t *testing.T) {
-	inputFile, _ := os.ReadFile("example.txt")
+	inputFile, _ := os.ReadFile("example2.txt")
 	input := strings.Split(string(inputFile), "\n")
-	want := PartTwo(input)
+	want := 48
 
 	got := PartTwo(input)
 
