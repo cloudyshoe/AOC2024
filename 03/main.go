@@ -9,6 +9,43 @@ import (
 	"strings"
 )
 
+func PartOneSplit(input []string) int {
+	result := 0
+
+	mulSplit := strings.Split(input[0], "mul(")
+	parenSplit := make([][]string, len(mulSplit))
+	for i, mul := range mulSplit {
+		parenSplit[i] = strings.Split(mul, ")")
+	}
+
+	var commaSplit [][][]string
+
+	for i, out := range parenSplit {
+		commaSplit = append(commaSplit, [][]string{})
+		for j, in := range out {
+			commaSplit[i] = append(commaSplit[i], []string{})
+			commaSplit[i][j] = strings.Split(in,",")
+		}
+	}
+
+	for _, one := range commaSplit {
+		for _, two := range one {
+			if len(two) == 2 {
+				tmp1, err1 := strconv.Atoi(two[0])
+				tmp2, err2 := strconv.Atoi(two[1])
+
+				if err1 == nil && err2 == nil {
+					result += tmp1 * tmp2
+				}
+			}
+		}
+	}
+
+
+
+	return result
+}
+
 func PartOneParser(input []string) int {
 	result := 0
 
