@@ -18,30 +18,34 @@ func PartOneSplit(input []string) int {
 		parenSplit[i] = strings.Split(mul, ")")
 	}
 
-	var commaSplit [][][]string
-
-	for i, out := range parenSplit {
-		commaSplit = append(commaSplit, [][]string{})
-		for j, in := range out {
-			commaSplit[i] = append(commaSplit[i], []string{})
-			commaSplit[i][j] = strings.Split(in,",")
-		}
-	}
-
-	for _, one := range commaSplit {
-		for _, two := range one {
-			if len(two) == 2 {
-				tmp1, err1 := strconv.Atoi(two[0])
-				tmp2, err2 := strconv.Atoi(two[1])
+	for _, out := range parenSplit {
+		for _, in := range out {
+			tmp := strings.Split(in,",")
+			if len(tmp) == 2 {
+				tmp := strings.Split(in,",")
+				tmp1, err1 := strconv.Atoi(tmp[0])
+				tmp2, err2 := strconv.Atoi(tmp[1])
 
 				if err1 == nil && err2 == nil {
 					result += tmp1 * tmp2
 				}
 			}
+
 		}
 	}
 
+	return result
+}
 
+func PartTwoSplit(input []string) int {
+	result := 0
+
+	doSplit := strings.Split(input[0], "do()")
+
+	for _, line := range doSplit {
+		tmp := strings.Split(line,"don't()")
+		result += PartOneSplit([]string{tmp[0]})
+	}
 
 	return result
 }

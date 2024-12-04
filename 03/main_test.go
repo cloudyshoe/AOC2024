@@ -42,6 +42,18 @@ func TestPartTwo(t *testing.T) {
 	}
 }
 
+func TestPartTwoSplit(t *testing.T) {
+	inputFile, _ := os.ReadFile("example2.txt")
+	input := strings.Split(string(inputFile), "\n")
+	want := 48
+
+	got := PartTwoSplit(input)
+
+	if got != want {
+		t.Errorf("expected '%d' but got '%d'", want, got)
+	}
+}
+
 func BenchmarkPartOne(b *testing.B) {
 	inputFile, _ := os.ReadFile("input.txt")
 	input := strings.Split(string(inputFile), "\n")
@@ -86,3 +98,13 @@ func BenchmarkPartTwoParser(b *testing.B) {
 		PartTwoParser(input)
 	}
 }
+
+func BenchmarkPartTwoSplit(b *testing.B) {
+	inputFile, _ := os.ReadFile("input.txt")
+	input := strings.Split(string(inputFile), "\n")
+
+	for i := 0; i < b.N; i++ {
+		PartTwoSplit(input)
+	}
+}
+
