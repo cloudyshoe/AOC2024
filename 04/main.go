@@ -62,6 +62,29 @@ func PartOne(input []string) int {
 
 func PartTwo(input []string) int {
 	result := 0
+	rows := len(input)
+	cols := len(input[0])
+
+	for i := range input {
+		for j := range input[i] {
+			if input[i][j] == 'A' {
+				if i+1 < rows && i-1 >= 0 && j+1 < cols && j-1 >= 0 {
+					if input[i-1][j-1] == 'M' && input[i-1][j+1] == 'M' && input[i+1][j-1] == 'S' && input[i+1][j+1] == 'S' {
+						result++
+					}
+					if input[i-1][j-1] == 'S' && input[i-1][j+1] == 'S' && input[i+1][j-1] == 'M' && input[i+1][j+1] == 'M' {
+						result++
+					}
+					if input[i-1][j-1] == 'M' && input[i-1][j+1] == 'S' && input[i+1][j-1] == 'M' && input[i+1][j+1] == 'S' {
+						result++
+					}
+					if input[i-1][j-1] == 'S' && input[i-1][j+1] == 'M' && input[i+1][j-1] == 'S' && input[i+1][j+1] == 'M' {
+						result++
+					}
+				}
+			}
+		}
+	}
 
 	return result
 }
