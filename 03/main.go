@@ -247,6 +247,18 @@ func main() {
 	partOneResult := PartOne(input)
 	fmt.Println("Part One Result:", partOneResult)
 
+	partOneParserResult := PartOneParser(input)
+	fmt.Println("Part One Result:", partOneParserResult)
+
+	partOneSplitResult := PartOneSplit(input)
+	fmt.Println("Part One Result:", partOneSplitResult)
+
 	partTwoResult := PartTwo(input)
 	fmt.Println("Part Two Result:", partTwoResult)
+
+	partTwoParserResult := PartTwoParser(input)
+	fmt.Println("Part Two Result:", partTwoParserResult)
+
+	partTwoSplitResult := PartTwoSplit(input)
+	fmt.Println("Part Two Result:", partTwoSplitResult)
 }

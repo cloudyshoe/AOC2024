@@ -25,32 +25,44 @@ func PartOne(input []string) int {
 					}
 				}
 				if i-3 >= 0 {
-					if input[i-1][j] == 'M' && input[i-2][j] == 'A' && input[i-3][j] == 'S' {
+					if input[i-1][j] == 'M' &&
+						input[i-2][j] == 'A' &&
+						input[i-3][j] == 'S' {
 						result++
 					}
 				}
 				if i+3 < rows {
-					if input[i+1][j] == 'M' && input[i+2][j] == 'A' && input[i+3][j] == 'S' {
+					if input[i+1][j] == 'M' &&
+						input[i+2][j] == 'A' &&
+						input[i+3][j] == 'S' {
 						result++
 					}
 				}
 				if i-3 >= 0 && j-3 >= 0 {
-					if input[i-1][j-1] == 'M' && input[i-2][j-2] == 'A' && input[i-3][j-3] == 'S' {
+					if input[i-1][j-1] == 'M' &&
+						input[i-2][j-2] == 'A' &&
+						input[i-3][j-3] == 'S' {
 						result++
 					}
 				}
 				if i-3 >= 0 && j+3 < cols {
-					if input[i-1][j+1] == 'M' && input[i-2][j+2] == 'A' && input[i-3][j+3] == 'S' {
+					if input[i-1][j+1] == 'M' &&
+						input[i-2][j+2] == 'A' &&
+						input[i-3][j+3] == 'S' {
 						result++
 					}
 				}
 				if i+3 < rows && j-3 >= 0 {
-					if input[i+1][j-1] == 'M' && input[i+2][j-2] == 'A' && input[i+3][j-3] == 'S' {
+					if input[i+1][j-1] == 'M' &&
+						input[i+2][j-2] == 'A' &&
+						input[i+3][j-3] == 'S' {
 						result++
 					}
 				}
 				if i+3 < rows && j+3 < cols {
-					if input[i+1][j+1] == 'M' && input[i+2][j+2] == 'A' && input[i+3][j+3] == 'S' {
+					if input[i+1][j+1] == 'M' &&
+						input[i+2][j+2] == 'A' &&
+						input[i+3][j+3] == 'S' {
 						result++
 					}
 				}
@@ -68,17 +80,30 @@ func PartTwo(input []string) int {
 	for i := range input {
 		for j := range input[i] {
 			if input[i][j] == 'A' {
-				if i+1 < rows && i-1 >= 0 && j+1 < cols && j-1 >= 0 {
-					if input[i-1][j-1] == 'M' && input[i-1][j+1] == 'M' && input[i+1][j-1] == 'S' && input[i+1][j+1] == 'S' {
+				if i+1 < rows && i-1 >= 0 &&
+					j+1 < cols && j-1 >= 0 {
+					if input[i-1][j-1] == 'M' &&
+						input[i-1][j+1] == 'M' &&
+						input[i+1][j-1] == 'S' &&
+						input[i+1][j+1] == 'S' {
 						result++
 					}
-					if input[i-1][j-1] == 'S' && input[i-1][j+1] == 'S' && input[i+1][j-1] == 'M' && input[i+1][j+1] == 'M' {
+					if input[i-1][j-1] == 'S' &&
+						input[i-1][j+1] == 'S' &&
+						input[i+1][j-1] == 'M' &&
+						input[i+1][j+1] == 'M' {
 						result++
 					}
-					if input[i-1][j-1] == 'M' && input[i-1][j+1] == 'S' && input[i+1][j-1] == 'M' && input[i+1][j+1] == 'S' {
+					if input[i-1][j-1] == 'M' &&
+						input[i-1][j+1] == 'S' &&
+						input[i+1][j-1] == 'M' &&
+						input[i+1][j+1] == 'S' {
 						result++
 					}
-					if input[i-1][j-1] == 'S' && input[i-1][j+1] == 'M' && input[i+1][j-1] == 'S' && input[i+1][j+1] == 'M' {
+					if input[i-1][j-1] == 'S' &&
+						input[i-1][j+1] == 'M' &&
+						input[i+1][j-1] == 'S' &&
+						input[i+1][j+1] == 'M' {
 						result++
 					}
 				}
