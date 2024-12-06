@@ -44,7 +44,7 @@ func PartOne(input []string) int {
 	dir := Coords{x: 0, y: -1}
 
 	for pos.x != 0 && pos.y != 0 && pos.x != len(input[0])-1 && pos.y != len(input)-1 {
-		if input[pos.y+dir.y][pos.x+dir.x] == '#' {
+		for input[pos.y+dir.y][pos.x+dir.x] == '#' {
 			if dir.y == -1 {
 				dir.x = 1
 				dir.y = 0
@@ -140,7 +140,6 @@ func PartTwo(input []string) int {
 			heading.dir = dir
 
 			if _, ok := history[heading]; ok {
-				//fmt.Println(result, obs.y, obs.x)
 				return 1
 			}
 
@@ -148,42 +147,13 @@ func PartTwo(input []string) int {
 			output[pos] = "X"
 		}
 
-		/*
-			for y, row := range input {
-				line := ""
-				for x := range row {
-					if _, ok := output[Coords{x: x, y: y}]; ok {
-						if input[y][x] == '#' {
-							line += "?"
-						} else {
-							line += "X"
-						}
-					} else {
-						line += string(input[y][x])
-					}
-				}
-				line += " " + strconv.Itoa(y)
-				fmt.Println(line)
-			}
-		*/
-
 		return 0
 	}
 
-	/*
-		for y, row := range input {
-			for x := range row {
-				obs := Coords{
-					x: x,
-					y: y,
-				}
-				result += checkObstacleLocation(pos, obs, input)
-			}
-		}
-	*/
-
 	for obs := range visited {
-		result += checkObstacleLocation(pos, obs, input)
+		if !(pos.x == obs.x && pos.y == obs.y) {
+			result += checkObstacleLocation(pos, obs, input)
+		}
 	}
 
 	return result
