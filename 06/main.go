@@ -5,6 +5,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
+	"sync/atomic"
 )
 
 type Coords struct {
@@ -82,7 +84,7 @@ func PartOne(input []string) int {
 }
 
 func PartTwo(input []string) int {
-	result := 0
+	//result := 0
 
 	pos := Coords{}
 	posFound := false
@@ -142,13 +144,21 @@ func PartTwo(input []string) int {
 		return 0
 	}
 
+	var result int32
+	var wg sync.WaitGroup
 	for obs := range visited {
 		if !(pos.x == obs.x && pos.y == obs.y) {
-			result += checkObstacleLocation(pos, obs, input)
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				val := checkObstacleLocation(pos, obs, input)
+				atomic.AddInt32(&result, int32(val))
+			}()
 		}
 	}
+	wg.Wait()
 
-	return result
+	return int(result)
 }
 
 func main() {
