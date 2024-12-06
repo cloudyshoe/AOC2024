@@ -17,20 +17,20 @@ type Heading struct {
 	dir Coords
 }
 
-var visited = make(map[Coords]bool)
+var visited = make(map[Coords]struct{})
 
 func PartOne(input []string) int {
 	result := 0
 
 	pos := Coords{}
 	posFound := false
-	output := make(map[string]bool)
+	output := make(map[string]struct{})
 
 	for y, row := range input {
 		for x, char := range row {
 			if char == '^' {
 				coords := strconv.Itoa(x) + "," + strconv.Itoa(y)
-				output[coords] = true
+				output[coords] = struct{}{}
 				pos.x, pos.y = x, y
 				posFound = true
 				break
@@ -41,30 +41,27 @@ func PartOne(input []string) int {
 		}
 	}
 
-	dir := Coords{x: 0, y: -1}
+	dirs := []Coords{
+		{x: 0, y: -1},
+		{x: 1, y: 0},
+		{x: 0, y: 1},
+		{x: -1, y: 0},
+	}
+
+	dirIndex := 0
+	dir := dirs[dirIndex]
 
 	for pos.x != 0 && pos.y != 0 && pos.x != len(input[0])-1 && pos.y != len(input)-1 {
 		for input[pos.y+dir.y][pos.x+dir.x] == '#' {
-			if dir.y == -1 {
-				dir.x = 1
-				dir.y = 0
-			} else if dir.x == 1 {
-				dir.x = 0
-				dir.y = 1
-			} else if dir.y == 1 {
-				dir.x = -1
-				dir.y = 0
-			} else {
-				dir.x = 0
-				dir.y = -1
-			}
+			dirIndex = (dirIndex + 1) % len(dirs)
+			dir = dirs[dirIndex]
 		}
 
 		pos.x += dir.x
 		pos.y += dir.y
 		coords := strconv.Itoa(pos.x) + "," + strconv.Itoa(pos.y)
-		output[coords] = true
-		visited[pos] = true
+		output[coords] = struct{}{}
+		visited[pos] = struct{}{}
 	}
 
 	for y, row := range input {
@@ -110,28 +107,24 @@ func PartTwo(input []string) int {
 		strSlice := []byte(input[obs.y])
 		strSlice[obs.x] = '#'
 		input[obs.y] = string(strSlice)
-		output := make(map[Coords]string)
 
-		dir := Coords{x: 0, y: -1}
-		history := make(map[Heading]bool)
+		dirs := []Coords{
+			{x: 0, y: -1},
+			{x: 1, y: 0},
+			{x: 0, y: 1},
+			{x: -1, y: 0},
+		}
+
+		dirIndex := 0
+		dir := dirs[dirIndex]
+		history := make(map[Heading]struct{})
 		heading := Heading{pos: pos, dir: dir}
-		history[heading] = true
+		history[heading] = struct{}{}
 
 		for pos.x != 0 && pos.y != 0 && pos.x != len(input[0])-1 && pos.y != len(input)-1 {
 			for input[pos.y+dir.y][pos.x+dir.x] == '#' {
-				if dir.y == -1 {
-					dir.x = 1
-					dir.y = 0
-				} else if dir.x == 1 {
-					dir.x = 0
-					dir.y = 1
-				} else if dir.y == 1 {
-					dir.x = -1
-					dir.y = 0
-				} else {
-					dir.x = 0
-					dir.y = -1
-				}
+				dirIndex = (dirIndex + 1) % len(dirs)
+				dir = dirs[dirIndex]
 			}
 
 			pos.x += dir.x
@@ -143,8 +136,7 @@ func PartTwo(input []string) int {
 				return 1
 			}
 
-			history[heading] = true
-			output[pos] = "X"
+			history[heading] = struct{}{}
 		}
 
 		return 0
