@@ -5,6 +5,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
+	"sync/atomic"
 )
 
 type TestSet struct {
@@ -35,7 +37,7 @@ func runOps2(ans, acc int, nums []int) bool {
 }
 
 func PartOne(input []string) int {
-	result := 0
+	//result := 0
 
 	testSet := make([]TestSet, len(input))
 	for i, line := range input {
@@ -50,18 +52,27 @@ func PartOne(input []string) int {
 		testSet[i] = TestSet{ans: ans, nums: nums}
 	}
 
+	var result int64
+	var wg sync.WaitGroup
+
 	for _, set := range testSet {
-		tmp := runOps(set.ans, set.nums[0], set.nums[1:])
-		if tmp {
-			result += set.ans
-		}
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			tmp := runOps(set.ans, set.nums[0], set.nums[1:])
+			if tmp {
+				atomic.AddInt64(&result, int64(set.ans))
+			}
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result)
 }
 
 func PartTwo(input []string) int {
-	result := 0
+	//result := 0
 
 	testSet := make([]TestSet, len(input))
 	for i, line := range input {
@@ -76,14 +87,23 @@ func PartTwo(input []string) int {
 		testSet[i] = TestSet{ans: ans, nums: nums}
 	}
 
+	var result int64
+	var wg sync.WaitGroup
+
 	for _, set := range testSet {
-		tmp := runOps2(set.ans, set.nums[0], set.nums[1:])
-		if tmp {
-			result += set.ans
-		}
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			tmp := runOps2(set.ans, set.nums[0], set.nums[1:])
+			if tmp {
+				atomic.AddInt64(&result, int64(set.ans))
+			}
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result)
 }
 
 func main() {
