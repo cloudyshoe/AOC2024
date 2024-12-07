@@ -12,27 +12,14 @@ type TestSet struct {
 	nums []int
 }
 
-var ops = []func(a, b int) int{
-	func(a, b int) int {
-		return a + b
-	},
-	func(a, b int) int {
-		return a * b
-	},
-}
-
 func runOps(ans, acc int, nums []int) bool {
-	fmt.Println(ans, acc, nums)
-	if acc == ans {
+	if len(nums) == 0 && acc == ans {
 		return true
-	}
-
-	if len(nums) == 0 {
+	} else if len(nums) == 0 {
 		return false
 	}
 
-	return runOps(ans, ops[0](acc, nums[0]), nums[1:]) || runOps(ans, ops[1](acc, nums[0]), nums[1:])
-
+	return runOps(ans, acc+nums[0], nums[1:]) || runOps(ans, acc*nums[0], nums[1:])
 }
 
 func PartOne(input []string) int {
@@ -53,6 +40,7 @@ func PartOne(input []string) int {
 
 	for _, set := range testSet {
 		tmp := runOps(set.ans, set.nums[0], set.nums[1:])
+		fmt.Println(set.ans, tmp)
 		if tmp {
 			result += set.ans
 		}
