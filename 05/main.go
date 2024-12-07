@@ -6,10 +6,12 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"sync"
+	"sync/atomic"
 )
 
 func PartOne(input []string) int {
-	result := 0
+	//result := 0
 
 	rules := strings.Split(input[0], "\n")
 	updatesList := strings.Split(input[1], "\n")
@@ -19,38 +21,45 @@ func PartOne(input []string) int {
 		updates[i] = strings.Split(update, ",")
 	}
 
+	var result int64
+	var wg sync.WaitGroup
 	for _, update := range updates {
-		correct := true
-		for i, page := range update {
-			for j := 0; j < i; j++ {
-				if !slices.Contains(rules, update[j]+"|"+page) {
-					correct = false
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			correct := true
+			for i, page := range update {
+				for j := 0; j < i; j++ {
+					if !slices.Contains(rules, update[j]+"|"+page) {
+						correct = false
+						break
+					}
+				}
+				for j := i + 1; j < len(update); j++ {
+					if !slices.Contains(rules, page+"|"+update[j]) {
+						correct = false
+						break
+					}
+				}
+				if !correct {
 					break
 				}
 			}
-			for j := i + 1; j < len(update); j++ {
-				if !slices.Contains(rules, page+"|"+update[j]) {
-					correct = false
-					break
-				}
-			}
-			if !correct {
-				break
-			}
-		}
-		if correct {
-			tmp, _ := strconv.Atoi(update[len(update)/2])
-			result += tmp
+			if correct {
+				tmp, _ := strconv.Atoi(update[len(update)/2])
+				atomic.AddInt64(&result, int64(tmp))
 
-		}
-
+			}
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result)
 }
 
 func PartOnePartTwoStyle(input []string) int {
-	result := 0
+	//result := 0
 
 	type Rules struct {
 		before []string
@@ -80,35 +89,43 @@ func PartOnePartTwoStyle(input []string) int {
 		updates[i] = strings.Split(update, ",")
 	}
 
+	var result int64
+	var wg sync.WaitGroup
+
 	for _, update := range updates {
-		correct := true
-		for i, page := range update {
-			for j := 0; j < i; j++ {
-				if !slices.Contains(rules[page].after, update[j]) {
-					correct = false
-					break
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			correct := true
+			for i, page := range update {
+				for j := 0; j < i; j++ {
+					if !slices.Contains(rules[page].after, update[j]) {
+						correct = false
+						break
+					}
+				}
+				for j := i + 1; j < len(update); j++ {
+					if !slices.Contains(rules[page].before, update[j]) {
+						correct = false
+						break
+					}
 				}
 			}
-			for j := i + 1; j < len(update); j++ {
-				if !slices.Contains(rules[page].before, update[j]) {
-					correct = false
-					break
-				}
+			if correct {
+				tmp, _ := strconv.Atoi(update[len(update)/2])
+				atomic.AddInt64(&result, int64(tmp))
+
 			}
-		}
-		if correct {
-			tmp, _ := strconv.Atoi(update[len(update)/2])
-			result += tmp
-
-		}
-
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result)
 }
 
 func PartTwo(input []string) int {
-	result := 0
+	//result := 0
 
 	type Rules struct {
 		before []string
@@ -155,30 +172,39 @@ func PartTwo(input []string) int {
 		return tmp
 	}
 
+	var result int64
+	var wg sync.WaitGroup
+
 	for _, update := range updates {
-		correct := true
-		for i, page := range update {
-			for j := 0; j < i; j++ {
-				if !slices.Contains(rules[page].after, update[j]) {
-					correct = false
-					result += reorder(update)
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			correct := true
+			for i, page := range update {
+				for j := 0; j < i; j++ {
+					if !slices.Contains(rules[page].after, update[j]) {
+						correct = false
+						atomic.AddInt64(&result, int64(reorder(update)))
+						break
+					}
+				}
+				for j := i + 1; j < len(update); j++ {
+					if !slices.Contains(rules[page].before, update[j]) {
+						correct = false
+						atomic.AddInt64(&result, int64(reorder(update)))
+						break
+					}
+				}
+				if !correct {
 					break
 				}
 			}
-			for j := i + 1; j < len(update); j++ {
-				if !slices.Contains(rules[page].before, update[j]) {
-					correct = false
-					result += reorder(update)
-					break
-				}
-			}
-			if !correct {
-				break
-			}
-		}
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result)
 }
 
 func main() {
