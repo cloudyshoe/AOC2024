@@ -9,6 +9,11 @@ type Point struct {
 	Y int
 }
 
+type Bounds struct {
+	Min Point
+	Max Point
+}
+
 func (p Point) Add(q Point) Point {
 	return Point{X: p.X + q.X, Y: p.Y + q.Y}
 }
@@ -17,12 +22,12 @@ func (p Point) Sub(q Point) Point {
 	return Point{X: p.X - q.X, Y: p.Y - q.Y}
 }
 
-func (p Point) In(min Point, max Point) bool {
-	return min.X <= p.X && p.X < max.X &&
-		min.Y <= p.Y && p.Y < max.Y
+func (p Point) In(q Bounds) bool {
+	return q.Min.X <= p.X && p.X < q.Max.X &&
+		q.Min.Y <= p.Y && p.Y < q.Max.Y
 }
 
-type Grid map[Point]string
+type Grid map[Point]rune
 
 func Abs(x int) int {
 	if x < 0 {
@@ -34,4 +39,17 @@ func Abs(x int) int {
 func Atoi(x string) int {
 	num, _ := strconv.Atoi(x)
 	return num
+}
+
+func GCD(a, b int) int {
+	for b != 0 {
+		t := b
+		b = a % b
+		a = t
+	}
+	return a
+}
+
+func LCM(a, b int) int {
+	return Abs(a) * (Abs(b) / GCD(a, b))
 }
