@@ -1,16 +1,11 @@
 package main
 
 import (
+	"aoc/utils"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
-
-func runeInt(r rune) int {
-	num, _ := strconv.Atoi(string(r))
-	return num
-}
 
 func PartOne(input []string) int {
 	result := 0
@@ -19,7 +14,7 @@ func PartOne(input []string) int {
 	var usedSpace []int
 
 	for i, char := range input[0] {
-		num := runeInt(char)
+		num := utils.Atoi(string(char))
 		if i%2 == 0 {
 			for j := 0; j < num; j++ {
 				blocks = append(blocks, i/2)
@@ -67,7 +62,7 @@ func PartTwo(input []string) int {
 	var usedSpace []Block
 
 	for i, char := range input[0] {
-		num := runeInt(char)
+		num := utils.Atoi(string(char))
 		if i%2 == 0 {
 			usedSpace = append(usedSpace, Block{start: len(blocks), len: num})
 			for j := 0; j < num; j++ {

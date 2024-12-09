@@ -1,10 +1,10 @@
 package main
 
 import (
+	"aoc/utils"
 	"fmt"
 	"os"
 	"slices"
-	"strconv"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -46,7 +46,7 @@ func PartOne(input []string) int {
 				}
 			}
 			if correct {
-				tmp, _ := strconv.Atoi(update[len(update)/2])
+				tmp := utils.Atoi(update[len(update)/2])
 				atomic.AddInt64(&result, int64(tmp))
 
 			}
@@ -112,7 +112,7 @@ func PartOnePartTwoStyle(input []string) int {
 				}
 			}
 			if correct {
-				tmp, _ := strconv.Atoi(update[len(update)/2])
+				tmp := utils.Atoi(update[len(update)/2])
 				atomic.AddInt64(&result, int64(tmp))
 
 			}
@@ -168,7 +168,7 @@ func PartTwo(input []string) int {
 			}
 			return aCount - bCount
 		})
-		tmp, _ := strconv.Atoi(blah[len(blah)/2])
+		tmp := utils.Atoi(blah[len(blah)/2])
 		return tmp
 	}
 

@@ -1,8 +1,8 @@
 package main
 
 import (
+	"aoc/utils"
 	"fmt"
-	"image"
 	"os"
 	"strings"
 )
@@ -10,13 +10,13 @@ import (
 func PartOne(input []string) int {
 	result := 0
 
-	nodes := make(map[image.Point]rune, len(input)*len(input[0]))
-	antinodes := make(map[image.Point]rune, len(input)*len(input[0]))
-	frequencies := make(map[rune][]image.Point)
+	nodes := make(map[utils.Point]rune, len(input)*len(input[0]))
+	antinodes := make(map[utils.Point]rune, len(input)*len(input[0]))
+	frequencies := make(map[rune][]utils.Point)
 
 	for y, line := range input {
 		for x, char := range line {
-			point := image.Point{X: x, Y: y}
+			point := utils.Point{X: x, Y: y}
 			nodes[point] = char
 			antinodes[point] = '.'
 			if char != '.' {
@@ -25,7 +25,9 @@ func PartOne(input []string) int {
 		}
 	}
 
-	bounds := image.Rectangle{Min: image.Point{X: 0, Y: 0}, Max: image.Point{X: len(input[0]), Y: len(input)}}
+	boundsMin := utils.Point{X: 0, Y: 0}
+	boundsMax := utils.Point{X: len(input[0]), Y: len(input)}
+
 	for _, points := range frequencies {
 		for i := 0; i < len(points)-1; i++ {
 			for j := i + 1; j < len(points); j++ {
@@ -33,13 +35,13 @@ func PartOne(input []string) int {
 				//fmt.Println(string(frequency), points[i], points[j].Sub(points[i]))
 				iNewPoint := points[i].Add(points[i].Sub(points[j]))
 				jNewPoint := points[j].Add(points[j].Sub(points[i]))
-				if iNewPoint.In(bounds) {
+				if iNewPoint.In(boundsMin, boundsMax) {
 					if antinodes[iNewPoint] != '#' {
 						antinodes[iNewPoint] = '#'
 						result++
 					}
 				}
-				if jNewPoint.In(bounds) {
+				if jNewPoint.In(boundsMin, boundsMax) {
 					if antinodes[jNewPoint] != '#' {
 						antinodes[jNewPoint] = '#'
 						result++
@@ -57,7 +59,7 @@ func PartOne(input []string) int {
 			nodeline := ""
 			antinodeline := ""
 			for x := range input {
-				point := image.Point{X: x, Y: y}
+				point := utils.Point{X: x, Y: y}
 				nodeline += string(nodes[point])
 				antinodeline += string(antinodes[point])
 			}
@@ -76,13 +78,13 @@ func PartOne(input []string) int {
 func PartTwo(input []string) int {
 	result := 0
 
-	nodes := make(map[image.Point]rune, len(input)*len(input[0]))
-	antinodes := make(map[image.Point]rune, len(input)*len(input[0]))
-	frequencies := make(map[rune][]image.Point)
+	nodes := make(map[utils.Point]rune, len(input)*len(input[0]))
+	antinodes := make(map[utils.Point]rune, len(input)*len(input[0]))
+	frequencies := make(map[rune][]utils.Point)
 
 	for y, line := range input {
 		for x, char := range line {
-			point := image.Point{X: x, Y: y}
+			point := utils.Point{X: x, Y: y}
 			nodes[point] = char
 			antinodes[point] = '.'
 			if char != '.' {
@@ -93,14 +95,16 @@ func PartTwo(input []string) int {
 		}
 	}
 
-	bounds := image.Rectangle{Min: image.Point{X: 0, Y: 0}, Max: image.Point{X: len(input[0]), Y: len(input)}}
+	boundsMin := utils.Point{X: 0, Y: 0}
+	boundsMax := utils.Point{X: len(input[0]), Y: len(input)}
+
 	for _, points := range frequencies {
 		for i := 0; i < len(points)-1; i++ {
 			for j := i + 1; j < len(points); j++ {
 				//fmt.Println(string(frequency), points[j], points[i].Sub(points[j]))
 				//fmt.Println(string(frequency), points[i], points[j].Sub(points[i]))
 				iDist := points[i].Sub(points[j])
-				for iNewPoint := points[i].Add(iDist); iNewPoint.In(bounds); iNewPoint = iNewPoint.Add(iDist) {
+				for iNewPoint := points[i].Add(iDist); iNewPoint.In(boundsMin, boundsMax); iNewPoint = iNewPoint.Add(iDist) {
 					if antinodes[iNewPoint] != '#' {
 						antinodes[iNewPoint] = '#'
 						result++
@@ -108,7 +112,7 @@ func PartTwo(input []string) int {
 
 				}
 				jDist := points[j].Sub(points[i])
-				for jNewPoint := points[j].Add(jDist); jNewPoint.In(bounds); jNewPoint = jNewPoint.Add(jDist) {
+				for jNewPoint := points[j].Add(jDist); jNewPoint.In(boundsMin, boundsMax); jNewPoint = jNewPoint.Add(jDist) {
 					if antinodes[jNewPoint] != '#' {
 						antinodes[jNewPoint] = '#'
 						result++
@@ -127,7 +131,7 @@ func PartTwo(input []string) int {
 			nodeline := ""
 			antinodeline := ""
 			for x := range input {
-				point := image.Point{X: x, Y: y}
+				point := utils.Point{X: x, Y: y}
 				nodeline += string(nodes[point])
 				antinodeline += string(antinodes[point])
 			}

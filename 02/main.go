@@ -1,18 +1,11 @@
 package main
 
 import (
+	"aoc/utils"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
-
-func abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
-}
 
 func sign(x int) int {
 	if x < 0 {
@@ -33,7 +26,7 @@ func safetyCheck(levels []int) int {
 	}
 
 	for i := 1; i < len(levels); i++ {
-		if sign(levels[i]-levels[i-1]) != firstSign || abs(levels[i]-levels[i-1]) > 3 {
+		if sign(levels[i]-levels[i-1]) != firstSign || utils.Abs(levels[i]-levels[i-1]) > 3 {
 			return 0
 		}
 	}
@@ -67,7 +60,7 @@ func PartOne(input []string) int {
 		levelsInt := make([]int, len(levels))
 
 		for i, level := range levels {
-			levelsInt[i], _ = strconv.Atoi(level)
+			levelsInt[i] = utils.Atoi(level)
 		}
 		result += safetyCheck(levelsInt)
 	}
@@ -83,7 +76,7 @@ func PartTwo(input []string) int {
 		levelsInt := make([]int, len(levels))
 
 		for i, level := range levels {
-			levelsInt[i], _ = strconv.Atoi(level)
+			levelsInt[i] = utils.Atoi(level)
 		}
 		result += safetyCheckPartTwo(levelsInt)
 	}

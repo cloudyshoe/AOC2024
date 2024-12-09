@@ -1,6 +1,7 @@
 package main
 
 import (
+	"aoc/utils"
 	"fmt"
 	"os"
 	"strconv"
@@ -32,7 +33,7 @@ func runOps2(ans, acc int, nums []int) bool {
 	}
 
 	tmp := strconv.Itoa(acc) + strconv.Itoa(nums[0])
-	cat, _ := strconv.Atoi(tmp)
+	cat := utils.Atoi(tmp)
 	return runOps2(ans, acc+nums[0], nums[1:]) || runOps2(ans, acc*nums[0], nums[1:]) || runOps2(ans, cat, nums[1:])
 }
 
@@ -42,11 +43,11 @@ func PartOne(input []string) int {
 	testSet := make([]TestSet, len(input))
 	for i, line := range input {
 		parts := strings.Split(line, ":")
-		ans, _ := strconv.Atoi(parts[0])
+		ans := utils.Atoi(parts[0])
 		numStrs := strings.Fields(parts[1])
 		nums := make([]int, len(numStrs))
 		for j, num := range numStrs {
-			tmp, _ := strconv.Atoi(num)
+			tmp := utils.Atoi(num)
 			nums[j] = tmp
 		}
 		testSet[i] = TestSet{ans: ans, nums: nums}
@@ -77,11 +78,11 @@ func PartTwo(input []string) int {
 	testSet := make([]TestSet, len(input))
 	for i, line := range input {
 		parts := strings.Split(line, ":")
-		ans, _ := strconv.Atoi(parts[0])
+		ans := utils.Atoi(parts[0])
 		numStrs := strings.Fields(parts[1])
 		nums := make([]int, len(numStrs))
 		for j, num := range numStrs {
-			tmp, _ := strconv.Atoi(num)
+			tmp := utils.Atoi(num)
 			nums[j] = tmp
 		}
 		testSet[i] = TestSet{ans: ans, nums: nums}

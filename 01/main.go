@@ -6,14 +6,8 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"aoc/utils"
 )
-
-func intAbs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
-}
 
 func PartOne(input []string) int {
 	result := 0
@@ -31,7 +25,7 @@ func PartOne(input []string) int {
 	slices.Sort(right)
 
 	for i := range left {
-		result += intAbs(left[i] - right[i])
+		result += utils.Abs(left[i] - right[i])
 	}
 
 	return result
