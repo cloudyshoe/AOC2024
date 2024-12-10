@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func floodFill(grid utils.IntGrid, point utils.Point, origPoint utils.Point) {
+func climbUpThatHill(grid utils.IntGrid, point utils.Point, origPoint utils.Point, reachableNines map[utils.Point][]utils.Point) {
 	dirs := []string{"n", "e", "s", "w"}
 	elevation := grid[point]
 
@@ -20,30 +20,25 @@ func floodFill(grid utils.IntGrid, point utils.Point, origPoint utils.Point) {
 				reachableNines[origPoint] = append(reachableNines[origPoint], nPoint.Point)
 			}
 		} else if nPoint.Exists && nPoint.Val-elevation == 1 {
-			floodFill(grid, nPoint.Point, origPoint)
+			climbUpThatHill(grid, nPoint.Point, origPoint, reachableNines)
 		}
 	}
 }
 
-func floodFillPath(grid utils.IntGrid, point utils.Point, origPoint utils.Point, path string) {
+func pathUpThatHill(grid utils.IntGrid, point utils.Point, origPoint utils.Point, path string, paths map[utils.Point][]string) {
 	dirs := []string{"n", "e", "s", "w"}
 	elevation := grid[point]
 
 	for _, dir := range dirs {
 		nPoint := grid.Dir(point, dir)
 		if nPoint.Exists && nPoint.Val-elevation == 1 && nPoint.Val == 9 {
-			//if !slices.Contains(paths[origPoint], path) {
 			paths[origPoint] = append(paths[origPoint], path)
-			//}
 		} else if nPoint.Exists && nPoint.Val-elevation == 1 {
 			path += nPoint.Point.String()
-			floodFillPath(grid, nPoint.Point, origPoint, path)
+			pathUpThatHill(grid, nPoint.Point, origPoint, path, paths)
 		}
 	}
 }
-
-var reachableNines = make(map[utils.Point][]utils.Point)
-var paths = make(map[utils.Point][]string)
 
 func PartOne(input []string) int {
 	result := 0
@@ -51,6 +46,7 @@ func PartOne(input []string) int {
 	grid := make(utils.IntGrid)
 	rows := len(input)
 	cols := len(input[0])
+	reachableNines := make(map[utils.Point][]utils.Point)
 
 	for x, line := range input {
 		for y, char := range strings.Split(line, "") {
@@ -65,7 +61,7 @@ func PartOne(input []string) int {
 			elevation := grid[point]
 			line += strconv.Itoa(elevation)
 			if elevation == 0 {
-				floodFill(grid, point, point)
+				climbUpThatHill(grid, point, point, reachableNines)
 			}
 		}
 	}
@@ -82,6 +78,7 @@ func PartTwo(input []string) int {
 	grid := make(utils.IntGrid)
 	rows := len(input)
 	cols := len(input[0])
+	paths := make(map[utils.Point][]string)
 
 	for x, line := range input {
 		for y, char := range strings.Split(line, "") {
@@ -96,7 +93,7 @@ func PartTwo(input []string) int {
 			elevation := grid[point]
 			line += strconv.Itoa(elevation)
 			if elevation == 0 {
-				floodFillPath(grid, point, point, "")
+				pathUpThatHill(grid, point, point, "", paths)
 			}
 		}
 	}
