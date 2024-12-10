@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"sync"
+	"sync/atomic"
 )
 
 func sign(x int) int {
@@ -62,6 +64,7 @@ func PartOne(input []string) int {
 		for i, level := range levels {
 			levelsInt[i] = utils.Atoi(level)
 		}
+
 		result += safetyCheck(levelsInt)
 	}
 
@@ -69,19 +72,28 @@ func PartOne(input []string) int {
 }
 
 func PartTwo(input []string) int {
-	result := 0
+	//result := 0
+
+	var result int32
+	var wg sync.WaitGroup
 
 	for _, line := range input {
-		levels := strings.Fields(line)
-		levelsInt := make([]int, len(levels))
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			levels := strings.Fields(line)
+			levelsInt := make([]int, len(levels))
 
-		for i, level := range levels {
-			levelsInt[i] = utils.Atoi(level)
-		}
-		result += safetyCheckPartTwo(levelsInt)
+			for i, level := range levels {
+				levelsInt[i] = utils.Atoi(level)
+			}
+			atomic.AddInt32(&result, int32(safetyCheckPartTwo(levelsInt)))
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result)
 }
 
 func main() {

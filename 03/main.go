@@ -7,6 +7,8 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
+	"sync/atomic"
 )
 
 func PartOneSplit(input []string) int {
@@ -20,9 +22,9 @@ func PartOneSplit(input []string) int {
 
 	for _, out := range parenSplit {
 		for _, in := range out {
-			tmp := strings.Split(in,",")
+			tmp := strings.Split(in, ",")
 			if len(tmp) == 2 {
-				tmp := strings.Split(in,",")
+				tmp := strings.Split(in, ",")
 				tmp1, err1 := strconv.Atoi(tmp[0])
 				tmp2, err2 := strconv.Atoi(tmp[1])
 
@@ -30,7 +32,6 @@ func PartOneSplit(input []string) int {
 					result += tmp1 * tmp2
 				}
 			}
-
 		}
 	}
 
@@ -38,16 +39,25 @@ func PartOneSplit(input []string) int {
 }
 
 func PartTwoSplit(input []string) int {
-	result := 0
+	//result := 0
 
 	doSplit := strings.Split(input[0], "do()")
 
+	var result int32
+	var wg sync.WaitGroup
+
 	for _, line := range doSplit {
-		tmp := strings.Split(line,"don't()")
-		result += PartOneSplit([]string{tmp[0]})
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			tmp := strings.Split(line, "don't()")
+			atomic.AddInt32(&result, int32(PartOneSplit([]string{tmp[0]})))
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result)
 }
 
 func PartOneParser(input []string) int {
