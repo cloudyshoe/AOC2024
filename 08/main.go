@@ -10,8 +10,8 @@ import (
 func PartOne(input []string) int {
 	result := 0
 
-	nodes := make(utils.Grid, len(input)*len(input[0]))
-	antinodes := make(utils.Grid, len(input)*len(input[0]))
+	nodes := make(utils.Grid[rune], len(input)*len(input[0]))
+	antinodes := make(utils.Grid[rune], len(input)*len(input[0]))
 	frequencies := make(map[rune][]utils.Point)
 
 	for y, line := range input {

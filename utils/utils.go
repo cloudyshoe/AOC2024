@@ -32,30 +32,30 @@ func (p Point) String() string {
 	return fmt.Sprintf("{%d, %d}", p.X, p.Y)
 }
 
-type Grid map[Point]rune
+type Grid[T any] map[Point]T
 
-type IntGrid map[Point]int
-
-type IntGridCell struct {
+type GridCell[T any] struct {
 	Exists bool
-	Val    int
+	Val    T
 	Point  Point
 }
 
 var gridDirs = map[string]Point{
-	"n": {X: 0, Y: -1},
-	"e": {X: 1, Y: 0},
-	"s": {X: 0, Y: 1},
-	"w": {X: -1, Y: 0},
+	"n":  {X: 0, Y: -1},
+	"ne": {X: 1, Y: -1},
+	"e":  {X: 1, Y: 0},
+	"se": {X: 1, Y: 1},
+	"s":  {X: 0, Y: 1},
+	"sw": {X: -1, Y: 1},
+	"w":  {X: -1, Y: 0},
+	"nw": {X: -1, Y: -1},
 }
 
-func (i IntGrid) Dir(p Point, str string) IntGridCell {
-	exists := false
-	val := 0
+func (i Grid[T]) Dir(p Point, str string) GridCell[T] {
 	point := p.Add(gridDirs[str])
-	val, exists = i[point]
+	val, exists := i[point]
 
-	return IntGridCell{Exists: exists, Val: val, Point: point}
+	return GridCell[T]{Exists: exists, Val: val, Point: point}
 }
 
 func Abs(x int) int {

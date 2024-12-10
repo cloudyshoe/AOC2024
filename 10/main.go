@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func climbUpThatHill(grid utils.IntGrid, point utils.Point, origPoint utils.Point, reachableNines map[utils.Point][]utils.Point) {
+func climbUpThatHill(grid utils.Grid[int], point utils.Point, origPoint utils.Point, reachableNines map[utils.Point][]utils.Point) {
 	dirs := []string{"n", "e", "s", "w"}
 	elevation := grid[point]
 
@@ -25,7 +25,7 @@ func climbUpThatHill(grid utils.IntGrid, point utils.Point, origPoint utils.Poin
 	}
 }
 
-func pathUpThatHill(grid utils.IntGrid, point utils.Point, origPoint utils.Point, path string, paths map[utils.Point][]string) {
+func pathUpThatHill(grid utils.Grid[int], point utils.Point, origPoint utils.Point, path string, paths map[utils.Point][]string) {
 	dirs := []string{"n", "e", "s", "w"}
 	elevation := grid[point]
 
@@ -43,7 +43,7 @@ func pathUpThatHill(grid utils.IntGrid, point utils.Point, origPoint utils.Point
 func PartOne(input []string) int {
 	result := 0
 
-	grid := make(utils.IntGrid)
+	grid := make(utils.Grid[int])
 	rows := len(input)
 	cols := len(input[0])
 	reachableNines := make(map[utils.Point][]utils.Point)
@@ -75,7 +75,7 @@ func PartOne(input []string) int {
 
 func PartTwo(input []string) int {
 	result := 0
-	grid := make(utils.IntGrid)
+	grid := make(utils.Grid[int])
 	rows := len(input)
 	cols := len(input[0])
 	paths := make(map[utils.Point][]string)
