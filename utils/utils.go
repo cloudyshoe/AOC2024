@@ -58,15 +58,16 @@ func (i Grid[T]) Dir(p Point, str string) GridCell[T] {
 	return GridCell[T]{Exists: exists, Val: val, Point: point}
 }
 
-func Abs(x int) int {
+func Abs[T int | int8 | int16 | int32 | int64 | float32 | float64](x T) T {
 	if x < 0 {
 		return -x
 	}
 	return x
 }
 
-func Atoi(x string) int {
-	num, _ := strconv.Atoi(x)
+func Atoi[T string | rune](x T) int {
+	xStr := string(x)
+	num, _ := strconv.Atoi(xStr)
 	return num
 }
 

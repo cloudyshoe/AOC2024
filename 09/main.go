@@ -14,7 +14,7 @@ func PartOne(input []string) int {
 	var usedSpace []int
 
 	for i, char := range input[0] {
-		num := utils.Atoi(string(char))
+		num := utils.Atoi(char)
 		if i%2 == 0 {
 			for j := 0; j < num; j++ {
 				blocks = append(blocks, i/2)
@@ -62,7 +62,7 @@ func PartTwo(input []string) int {
 	var usedSpace []Block
 
 	for i, char := range input[0] {
-		num := utils.Atoi(string(char))
+		num := utils.Atoi(char)
 		if i%2 == 0 {
 			usedSpace = append(usedSpace, Block{start: len(blocks), len: num})
 			for j := 0; j < num; j++ {
