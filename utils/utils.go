@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -25,6 +26,10 @@ func (p Point) Sub(q Point) Point {
 func (p Point) In(q Bounds) bool {
 	return q.Min.X <= p.X && p.X < q.Max.X &&
 		q.Min.Y <= p.Y && p.Y < q.Max.Y
+}
+
+func (p Point) String() string {
+	return fmt.Sprintf("{%d, %d}", p.X, p.Y)
 }
 
 type Grid map[Point]rune
