@@ -3,6 +3,7 @@ package main
 import (
 	"aoc/utils"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -46,7 +47,7 @@ func PartOne(input []string) int {
 }
 
 type cacheHeader struct {
-	stone string
+	stone int
 	depth int
 }
 
@@ -57,7 +58,7 @@ func resetCache() {
 	memo = make(map[cacheHeader]int)
 }
 
-func processStone(stone string, depth int) int {
+func processStone(stone int, depth int) int {
 
 	key := cacheHeader{stone: stone, depth: depth}
 
@@ -73,16 +74,15 @@ func processStone(stone string, depth int) int {
 
 	result := 0
 	if !ok {
-		switch {
-		case stone == "0":
-			result += processStone("1", depth+1)
-		case len(stone)%2 == 0:
-			stone1 := strconv.Itoa((utils.Atoi(stone[:len(stone)/2])))
+		if stone == 0 {
+			result += processStone(1, depth+1)
+		} else if digits := len(strconv.Itoa(stone)); digits%2 == 0 {
+			stone1 := stone / int(math.Pow10(digits/2))
+			stone2 := stone % int(math.Pow10(digits/2))
 			result += processStone(stone1, depth+1)
-			stone2 := strconv.Itoa((utils.Atoi(stone[len(stone)/2:])))
 			result += processStone(stone2, depth+1)
-		default:
-			result += processStone(strconv.Itoa(utils.Atoi(stone)*2024), depth+1)
+		} else {
+			result += processStone(stone*2024, depth+1)
 		}
 	}
 
@@ -96,7 +96,8 @@ func PartTwo(input []string) int {
 	stones := strings.Fields(input[0])
 
 	for _, stone := range stones {
-		result += processStone(stone, 0)
+		stInt := utils.Atoi(stone)
+		result += processStone(stInt, 0)
 	}
 
 	return result
@@ -116,5 +117,5 @@ func main() {
 	resetCache()
 
 	partTwoResult = PartTwo(input)
-	fmt.Println("Part Two Result:", partTwoResult)
+	fmt.Println("Part One Part Two Style Result:", partTwoResult)
 }
