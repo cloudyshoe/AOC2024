@@ -30,10 +30,9 @@ func PartOne(input []string) int {
 			case stone == "0":
 				newStones = append(newStones, "1")
 			case len(stone)%2 == 0:
-				stone1 := strconv.Itoa((utils.Atoi[string](stone[0 : len(stone)/2])))
-				stone2 := strconv.Itoa((utils.Atoi[string](stone[len(stone)/2:])))
-				newStones = append(newStones, stone1)
-				newStones = append(newStones, stone2)
+				stone1 := strconv.Itoa((utils.Atoi(stone[0 : len(stone)/2])))
+				stone2 := strconv.Itoa((utils.Atoi(stone[len(stone)/2:])))
+				newStones = append(newStones, stone1, stone2)
 			default:
 				newStones = append(newStones, strconv.Itoa(utils.Atoi(stone)*2024))
 			}
@@ -46,8 +45,47 @@ func PartOne(input []string) int {
 	return result
 }
 
+func processStone(stone string, depth int) int {
+
+	if depth == 75 {
+		memo[stone+","+strconv.Itoa(depth)] = 1
+		return 1
+	}
+
+	stored, ok := memo[stone+","+strconv.Itoa(depth)]
+	if ok {
+		return stored
+	}
+
+	result := 0
+	if !ok {
+		switch {
+		case stone == "0":
+			result += processStone("1", depth+1)
+		case len(stone)%2 == 0:
+			stone1 := strconv.Itoa((utils.Atoi(stone[:len(stone)/2])))
+			result += processStone(stone1, depth+1)
+			stone2 := strconv.Itoa((utils.Atoi(stone[len(stone)/2:])))
+			result += processStone(stone2, depth+1)
+		default:
+			result += processStone(strconv.Itoa(utils.Atoi(stone)*2024), depth+1)
+		}
+	}
+
+	memo[stone+","+strconv.Itoa(depth)] = result
+
+	return result
+}
+
+var memo = make(map[string]int)
+
 func PartTwo(input []string) int {
 	result := 0
+	stones := strings.Fields(input[0])
+
+	for _, stone := range stones {
+		result += processStone(stone, 0)
+	}
 
 	return result
 }
