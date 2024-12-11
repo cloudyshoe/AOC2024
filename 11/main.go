@@ -45,14 +45,28 @@ func PartOne(input []string) int {
 	return result
 }
 
+type cacheHeader struct {
+	stone string
+	depth int
+}
+
+var memo = make(map[cacheHeader]int)
+var maxDepth = 75
+
+func resetCache() {
+	memo = make(map[cacheHeader]int)
+}
+
 func processStone(stone string, depth int) int {
 
-	if depth == 75 {
-		memo[stone+","+strconv.Itoa(depth)] = 1
+	key := cacheHeader{stone: stone, depth: depth}
+
+	if depth == maxDepth {
+		memo[key] = 1
 		return 1
 	}
 
-	stored, ok := memo[stone+","+strconv.Itoa(depth)]
+	stored, ok := memo[key]
 	if ok {
 		return stored
 	}
@@ -72,12 +86,10 @@ func processStone(stone string, depth int) int {
 		}
 	}
 
-	memo[stone+","+strconv.Itoa(depth)] = result
+	memo[key] = result
 
 	return result
 }
-
-var memo = make(map[string]int)
 
 func PartTwo(input []string) int {
 	result := 0
@@ -98,5 +110,11 @@ func main() {
 	fmt.Println("Part One Result:", partOneResult)
 
 	partTwoResult := PartTwo(input)
+	fmt.Println("Part Two Result:", partTwoResult)
+
+	maxDepth = 25
+	resetCache()
+
+	partTwoResult = PartTwo(input)
 	fmt.Println("Part Two Result:", partTwoResult)
 }

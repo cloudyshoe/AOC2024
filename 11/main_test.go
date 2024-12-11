@@ -39,9 +39,22 @@ func BenchmarkPartOne(b *testing.B) {
 	}
 }
 
+func BenchmarkPartOnePartTwoStyle(b *testing.B) {
+	inputFile, _ := os.ReadFile("input.txt")
+	input := strings.Split(string(inputFile), "\n")
+	resetCache()
+	maxDepth = 25
+
+	for i := 0; i < b.N; i++ {
+		PartTwo(input)
+	}
+}
+
 func BenchmarkPartTwo(b *testing.B) {
 	inputFile, _ := os.ReadFile("input.txt")
 	input := strings.Split(string(inputFile), "\n")
+	resetCache()
+	maxDepth = 75
 
 	for i := 0; i < b.N; i++ {
 		PartTwo(input)
