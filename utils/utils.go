@@ -32,7 +32,7 @@ func (p Point) String() string {
 	return fmt.Sprintf("{%d, %d}", p.X, p.Y)
 }
 
-type Grid[T any] map[Point]T
+type HashGrid[T any] map[Point]T
 
 type GridCell[T any] struct {
 	Exists bool
@@ -51,7 +51,7 @@ var gridDirs = map[string]Point{
 	"nw": {X: -1, Y: -1},
 }
 
-func (i Grid[T]) Dir(p Point, str string) GridCell[T] {
+func (i HashGrid[T]) Dir(p Point, str string) GridCell[T] {
 	point := p.Add(gridDirs[str])
 	val, exists := i[point]
 
