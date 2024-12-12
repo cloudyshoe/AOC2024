@@ -6,8 +6,8 @@ import (
 )
 
 type Coords struct {
-	X int
-	Y int
+	Col int
+	Row int
 }
 
 type Bounds struct {
@@ -16,20 +16,20 @@ type Bounds struct {
 }
 
 func (p Coords) Add(q Coords) Coords {
-	return Coords{X: p.X + q.X, Y: p.Y + q.Y}
+	return Coords{Col: p.Col + q.Col, Row: p.Row + q.Row}
 }
 
 func (p Coords) Sub(q Coords) Coords {
-	return Coords{X: p.X - q.X, Y: p.Y - q.Y}
+	return Coords{Col: p.Col - q.Col, Row: p.Row - q.Row}
 }
 
 func (p Coords) In(q Bounds) bool {
-	return q.Min.X <= p.X && p.X < q.Max.X &&
-		q.Min.Y <= p.Y && p.Y < q.Max.Y
+	return q.Min.Col <= p.Col && p.Col < q.Max.Col &&
+		q.Min.Row <= p.Row && p.Row < q.Max.Row
 }
 
 func (p Coords) String() string {
-	return fmt.Sprintf("{%d, %d}", p.X, p.Y)
+	return fmt.Sprintf("{Row: %d, Col: %d}", p.Row, p.Col)
 }
 
 type HashGrid[T any] map[Coords]T
@@ -41,14 +41,14 @@ type GridCell[T any] struct {
 }
 
 var gridDirs = map[string]Coords{
-	"n":  {X: 0, Y: -1},
-	"ne": {X: 1, Y: -1},
-	"e":  {X: 1, Y: 0},
-	"se": {X: 1, Y: 1},
-	"s":  {X: 0, Y: 1},
-	"sw": {X: -1, Y: 1},
-	"w":  {X: -1, Y: 0},
-	"nw": {X: -1, Y: -1},
+	"n":  {Row: -1, Col: 0},
+	"ne": {Row: -1, Col: 1},
+	"e":  {Row: 0, Col: 1},
+	"se": {Row: 1, Col: 1},
+	"s":  {Row: 1, Col: 0},
+	"sw": {Row: 1, Col: -1},
+	"w":  {Row: 0, Col: -1},
+	"nw": {Row: -1, Col: -1},
 }
 
 func (i HashGrid[T]) Dir(p Coords, str string) GridCell[T] {
@@ -60,13 +60,14 @@ func (i HashGrid[T]) Dir(p Coords, str string) GridCell[T] {
 
 type Grid[T any] [][]T
 
-func (g Grid[T]) Dir(p Coords, str string) GridCell[T] {
+func (g Grid[T]) Dir(c Coords, str string) GridCell[T] {
 	cell := GridCell[T]{}
-	cell.Point = p.Add(gridDirs[str])
+	cell.Point = c.Add(gridDirs[str])
 	if len(g) > 0 && len(g[0]) > 0 &&
-		p.X >= 0 && p.X <= len(g) && p.Y >= 0 && p.Y <= len(g[0]) {
+		cell.Point.Col >= 0 && cell.Point.Col < len(g[0]) &&
+		cell.Point.Row >= 0 && cell.Point.Row < len(g) {
 		cell.Exists = true
-		cell.Val = g[p.Y][p.X]
+		cell.Val = g[c.Row][c.Col]
 	} else {
 		cell.Exists = false
 	}

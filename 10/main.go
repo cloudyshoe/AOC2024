@@ -44,20 +44,20 @@ func PartOne(input []string) int {
 	result := 0
 
 	grid := make(utils.HashGrid[int])
-	rows := len(input)
-	cols := len(input[0])
+	cols := len(input)
+	rows := len(input[0])
 	reachableNines := make(map[utils.Coords][]utils.Coords)
 
 	for x, line := range input {
 		for y, char := range strings.Split(line, "") {
-			grid[utils.Coords{X: x, Y: y}] = utils.Atoi(char)
+			grid[utils.Coords{Col: x, Row: y}] = utils.Atoi(char)
 		}
 	}
 
-	for x := 0; x < cols; x++ {
+	for row := 0; row < rows; row++ {
 		line := ""
-		for y := 0; y < rows; y++ {
-			point := utils.Coords{X: x, Y: y}
+		for col := 0; col < cols; col++ {
+			point := utils.Coords{Col: row, Row: col}
 			elevation := grid[point]
 			line += strconv.Itoa(elevation)
 			if elevation == 0 {
@@ -82,14 +82,14 @@ func PartTwo(input []string) int {
 
 	for x, line := range input {
 		for y, char := range strings.Split(line, "") {
-			grid[utils.Coords{X: x, Y: y}] = utils.Atoi(char)
+			grid[utils.Coords{Col: x, Row: y}] = utils.Atoi(char)
 		}
 	}
 
 	for x := 0; x < cols; x++ {
 		line := ""
 		for y := 0; y < rows; y++ {
-			point := utils.Coords{X: x, Y: y}
+			point := utils.Coords{Col: x, Row: y}
 			elevation := grid[point]
 			line += strconv.Itoa(elevation)
 			if elevation == 0 {

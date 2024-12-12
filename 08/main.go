@@ -16,7 +16,7 @@ func PartOne(input []string) int {
 
 	for y, line := range input {
 		for x, char := range line {
-			point := utils.Coords{X: x, Y: y}
+			point := utils.Coords{Col: x, Row: y}
 			nodes[point] = char
 			antinodes[point] = '.'
 			if char != '.' {
@@ -25,7 +25,7 @@ func PartOne(input []string) int {
 		}
 	}
 
-	bounds := utils.Bounds{Min: utils.Coords{X: 0, Y: 0}, Max: utils.Coords{X: len(input[0]), Y: len(input)}}
+	bounds := utils.Bounds{Min: utils.Coords{Col: 0, Row: 0}, Max: utils.Coords{Col: len(input[0]), Row: len(input)}}
 
 	for _, points := range frequencies {
 		for i := 0; i < len(points)-1; i++ {
@@ -83,7 +83,7 @@ func PartTwo(input []string) int {
 
 	for y, line := range input {
 		for x, char := range line {
-			point := utils.Coords{X: x, Y: y}
+			point := utils.Coords{Col: x, Row: y}
 			nodes[point] = char
 			antinodes[point] = '.'
 			if char != '.' {
@@ -94,7 +94,7 @@ func PartTwo(input []string) int {
 		}
 	}
 
-	bounds := utils.Bounds{Min: utils.Coords{X: 0, Y: 0}, Max: utils.Coords{X: len(input[0]), Y: len(input)}}
+	bounds := utils.Bounds{Min: utils.Coords{Col: 0, Row: 0}, Max: utils.Coords{Col: len(input[0]), Row: len(input)}}
 
 	for _, points := range frequencies {
 		for i := 0; i < len(points)-1; i++ {
