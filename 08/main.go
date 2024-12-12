@@ -12,11 +12,11 @@ func PartOne(input []string) int {
 
 	nodes := make(utils.HashGrid[rune], len(input)*len(input[0]))
 	antinodes := make(utils.HashGrid[rune], len(input)*len(input[0]))
-	frequencies := make(map[rune][]utils.Point)
+	frequencies := make(map[rune][]utils.Coords)
 
 	for y, line := range input {
 		for x, char := range line {
-			point := utils.Point{X: x, Y: y}
+			point := utils.Coords{X: x, Y: y}
 			nodes[point] = char
 			antinodes[point] = '.'
 			if char != '.' {
@@ -25,7 +25,7 @@ func PartOne(input []string) int {
 		}
 	}
 
-	bounds := utils.Bounds{Min: utils.Point{X: 0, Y: 0}, Max: utils.Point{X: len(input[0]), Y: len(input)}}
+	bounds := utils.Bounds{Min: utils.Coords{X: 0, Y: 0}, Max: utils.Coords{X: len(input[0]), Y: len(input)}}
 
 	for _, points := range frequencies {
 		for i := 0; i < len(points)-1; i++ {
@@ -77,13 +77,13 @@ func PartOne(input []string) int {
 func PartTwo(input []string) int {
 	result := 0
 
-	nodes := make(map[utils.Point]rune, len(input)*len(input[0]))
-	antinodes := make(map[utils.Point]rune, len(input)*len(input[0]))
-	frequencies := make(map[rune][]utils.Point)
+	nodes := make(map[utils.Coords]rune, len(input)*len(input[0]))
+	antinodes := make(map[utils.Coords]rune, len(input)*len(input[0]))
+	frequencies := make(map[rune][]utils.Coords)
 
 	for y, line := range input {
 		for x, char := range line {
-			point := utils.Point{X: x, Y: y}
+			point := utils.Coords{X: x, Y: y}
 			nodes[point] = char
 			antinodes[point] = '.'
 			if char != '.' {
@@ -94,7 +94,7 @@ func PartTwo(input []string) int {
 		}
 	}
 
-	bounds := utils.Bounds{Min: utils.Point{X: 0, Y: 0}, Max: utils.Point{X: len(input[0]), Y: len(input)}}
+	bounds := utils.Bounds{Min: utils.Coords{X: 0, Y: 0}, Max: utils.Coords{X: len(input[0]), Y: len(input)}}
 
 	for _, points := range frequencies {
 		for i := 0; i < len(points)-1; i++ {

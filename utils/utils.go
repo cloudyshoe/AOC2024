@@ -5,42 +5,42 @@ import (
 	"strconv"
 )
 
-type Point struct {
+type Coords struct {
 	X int
 	Y int
 }
 
 type Bounds struct {
-	Min Point
-	Max Point
+	Min Coords
+	Max Coords
 }
 
-func (p Point) Add(q Point) Point {
-	return Point{X: p.X + q.X, Y: p.Y + q.Y}
+func (p Coords) Add(q Coords) Coords {
+	return Coords{X: p.X + q.X, Y: p.Y + q.Y}
 }
 
-func (p Point) Sub(q Point) Point {
-	return Point{X: p.X - q.X, Y: p.Y - q.Y}
+func (p Coords) Sub(q Coords) Coords {
+	return Coords{X: p.X - q.X, Y: p.Y - q.Y}
 }
 
-func (p Point) In(q Bounds) bool {
+func (p Coords) In(q Bounds) bool {
 	return q.Min.X <= p.X && p.X < q.Max.X &&
 		q.Min.Y <= p.Y && p.Y < q.Max.Y
 }
 
-func (p Point) String() string {
+func (p Coords) String() string {
 	return fmt.Sprintf("{%d, %d}", p.X, p.Y)
 }
 
-type HashGrid[T any] map[Point]T
+type HashGrid[T any] map[Coords]T
 
 type GridCell[T any] struct {
 	Exists bool
 	Val    T
-	Point  Point
+	Point  Coords
 }
 
-var gridDirs = map[string]Point{
+var gridDirs = map[string]Coords{
 	"n":  {X: 0, Y: -1},
 	"ne": {X: 1, Y: -1},
 	"e":  {X: 1, Y: 0},
@@ -51,11 +51,27 @@ var gridDirs = map[string]Point{
 	"nw": {X: -1, Y: -1},
 }
 
-func (i HashGrid[T]) Dir(p Point, str string) GridCell[T] {
+func (i HashGrid[T]) Dir(p Coords, str string) GridCell[T] {
 	point := p.Add(gridDirs[str])
 	val, exists := i[point]
 
 	return GridCell[T]{Exists: exists, Val: val, Point: point}
+}
+
+type Grid[T any] [][]T
+
+func (g Grid[T]) Dir(p Coords, str string) GridCell[T] {
+	cell := GridCell[T]{}
+	cell.Point = p.Add(gridDirs[str])
+	if len(g) > 0 && len(g[0]) > 0 &&
+		p.X >= 0 && p.X <= len(g) && p.Y >= 0 && p.Y <= len(g[0]) {
+		cell.Exists = true
+		cell.Val = g[p.Y][p.X]
+	} else {
+		cell.Exists = false
+	}
+
+	return cell
 }
 
 func Abs[T int | int8 | int16 | int32 | int64 | float32 | float64](x T) T {
