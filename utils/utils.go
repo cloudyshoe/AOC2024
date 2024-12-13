@@ -5,53 +5,54 @@ import (
 	"strconv"
 )
 
-type Coords struct {
+type Coord struct {
 	Col int
 	Row int
 }
 
 type Bounds struct {
-	Min Coords
-	Max Coords
+	Min Coord
+	Max Coord
 }
 
-func (p Coords) Add(q Coords) Coords {
-	return Coords{Col: p.Col + q.Col, Row: p.Row + q.Row}
+func (p Coord) Add(q Coord) Coord {
+	return Coord{Col: p.Col + q.Col, Row: p.Row + q.Row}
 }
 
-func (p Coords) Sub(q Coords) Coords {
-	return Coords{Col: p.Col - q.Col, Row: p.Row - q.Row}
+func (p Coord) Sub(q Coord) Coord {
+	return Coord{Col: p.Col - q.Col, Row: p.Row - q.Row}
 }
 
-func (p Coords) In(q Bounds) bool {
+func (p Coord) In(q Bounds) bool {
 	return q.Min.Col <= p.Col && p.Col < q.Max.Col &&
 		q.Min.Row <= p.Row && p.Row < q.Max.Row
 }
 
-func (p Coords) String() string {
+func (p Coord) String() string {
 	return fmt.Sprintf("{Row: %d, Col: %d}", p.Row, p.Col)
 }
 
-type HashGrid[T any] map[Coords]T
+type HashGrid[T any] map[Coord]T
 
 type GridCell[T any] struct {
 	Exists bool
 	Val    T
-	Point  Coords
+	Point  Coord
 }
 
-var gridDirs = map[string]Coords{
-	"n":  {Row: -1, Col: 0},
-	"ne": {Row: -1, Col: 1},
-	"e":  {Row: 0, Col: 1},
-	"se": {Row: 1, Col: 1},
-	"s":  {Row: 1, Col: 0},
-	"sw": {Row: 1, Col: -1},
-	"w":  {Row: 0, Col: -1},
-	"nw": {Row: -1, Col: -1},
+var gridDirs = map[string]Coord{
+	"n":    {Row: -1, Col: 0},
+	"ne":   {Row: -1, Col: 1},
+	"e":    {Row: 0, Col: 1},
+	"se":   {Row: 1, Col: 1},
+	"s":    {Row: 1, Col: 0},
+	"sw":   {Row: 1, Col: -1},
+	"w":    {Row: 0, Col: -1},
+	"nw":   {Row: -1, Col: -1},
+	"this": {Row: 0, Col: 0},
 }
 
-func (i HashGrid[T]) Dir(p Coords, str string) GridCell[T] {
+func (i HashGrid[T]) Dir(p Coord, str string) GridCell[T] {
 	point := p.Add(gridDirs[str])
 	val, exists := i[point]
 
@@ -60,7 +61,7 @@ func (i HashGrid[T]) Dir(p Coords, str string) GridCell[T] {
 
 type Grid[T any] [][]T
 
-func (g Grid[T]) Dir(c Coords, str string) GridCell[T] {
+func (g Grid[T]) Dir(c Coord, str string) GridCell[T] {
 	cell := GridCell[T]{}
 	cell.Point = c.Add(gridDirs[str])
 	if len(g) > 0 && len(g[0]) > 0 &&

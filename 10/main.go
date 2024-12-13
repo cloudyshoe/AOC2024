@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func climbUpThatHill(grid utils.HashGrid[int], point utils.Coords, origPoint utils.Coords, reachableNines map[utils.Coords][]utils.Coords) {
+func climbUpThatHill(grid utils.HashGrid[int], point utils.Coord, origPoint utils.Coord, reachableNines map[utils.Coord][]utils.Coord) {
 	dirs := []string{"n", "e", "s", "w"}
 	elevation := grid[point]
 
@@ -25,7 +25,7 @@ func climbUpThatHill(grid utils.HashGrid[int], point utils.Coords, origPoint uti
 	}
 }
 
-func pathUpThatHill(grid utils.HashGrid[int], point utils.Coords, origPoint utils.Coords, path string, paths map[utils.Coords][]string) {
+func pathUpThatHill(grid utils.HashGrid[int], point utils.Coord, origPoint utils.Coord, path string, paths map[utils.Coord][]string) {
 	dirs := []string{"n", "e", "s", "w"}
 	elevation := grid[point]
 
@@ -46,18 +46,18 @@ func PartOne(input []string) int {
 	grid := make(utils.HashGrid[int])
 	cols := len(input)
 	rows := len(input[0])
-	reachableNines := make(map[utils.Coords][]utils.Coords)
+	reachableNines := make(map[utils.Coord][]utils.Coord)
 
 	for x, line := range input {
 		for y, char := range strings.Split(line, "") {
-			grid[utils.Coords{Col: x, Row: y}] = utils.Atoi(char)
+			grid[utils.Coord{Col: x, Row: y}] = utils.Atoi(char)
 		}
 	}
 
 	for row := 0; row < rows; row++ {
 		line := ""
 		for col := 0; col < cols; col++ {
-			point := utils.Coords{Col: row, Row: col}
+			point := utils.Coord{Col: row, Row: col}
 			elevation := grid[point]
 			line += strconv.Itoa(elevation)
 			if elevation == 0 {
@@ -78,18 +78,18 @@ func PartTwo(input []string) int {
 	grid := make(utils.HashGrid[int])
 	rows := len(input)
 	cols := len(input[0])
-	paths := make(map[utils.Coords][]string)
+	paths := make(map[utils.Coord][]string)
 
 	for x, line := range input {
 		for y, char := range strings.Split(line, "") {
-			grid[utils.Coords{Col: x, Row: y}] = utils.Atoi(char)
+			grid[utils.Coord{Col: x, Row: y}] = utils.Atoi(char)
 		}
 	}
 
 	for x := 0; x < cols; x++ {
 		line := ""
 		for y := 0; y < rows; y++ {
-			point := utils.Coords{Col: x, Row: y}
+			point := utils.Coord{Col: x, Row: y}
 			elevation := grid[point]
 			line += strconv.Itoa(elevation)
 			if elevation == 0 {
