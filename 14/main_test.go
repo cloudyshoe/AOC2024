@@ -18,12 +18,13 @@ func TestPartOne(t *testing.T) {
 	}
 }
 
+/*
 func TestPartTwo(t *testing.T) {
 	inputFile, _ := os.ReadFile("example.txt")
 	input := strings.Split(string(inputFile), "\n")
-	want := PartTwo(input)
+	want := 0
 
-	got := PartTwo(input)
+	got := PartTwo(input, 7, 11)
 
 	if got != want {
 		t.Errorf("expected '%d' but got '%d'", want, got)
@@ -35,7 +36,7 @@ func BenchmarkPartOne(b *testing.B) {
 	input := strings.Split(string(inputFile), "\n")
 
 	for i := 0; i < b.N; i++ {
-		PartOne(input, 103, 101)
+		PartOne(input, 101, 103)
 	}
 }
 
@@ -44,6 +45,7 @@ func BenchmarkPartTwo(b *testing.B) {
 	input := strings.Split(string(inputFile), "\n")
 
 	for i := 0; i < b.N; i++ {
-		PartTwo(input)
+		PartTwo(input, 101, 103)
 	}
 }
+*/

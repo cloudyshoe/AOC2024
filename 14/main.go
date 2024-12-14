@@ -2,6 +2,7 @@ package main
 
 import (
 	"aoc/utils"
+	"bufio"
 	"flag"
 	"fmt"
 	"os"
@@ -92,8 +93,75 @@ func PartOne(input []string, maxRows int, maxCols int) int {
 	return result
 }
 
-func PartTwo(input []string) int {
+func PartTwo(input []string, maxRows int, maxCols int) int {
 	result := 0
+	robots := make([]Robot, len(input))
+	seconds := 1
+
+	for i, line := range input {
+		robot := Robot{}
+		fmt.Sscanf(line, "p=%d,%d v=%d,%d", &robot.loc.Col, &robot.loc.Row, &robot.vel.Col, &robot.vel.Row)
+		robots[i] = robot
+		if *debug {
+			fmt.Println(robot)
+		}
+	}
+
+	key := bufio.NewReader(os.Stdin)
+
+	for {
+		for i, robot := range robots {
+			robot.loc = robot.loc.Add(robot.vel)
+			if robot.loc.Col < 0 {
+				robot.loc.Col = maxCols + robot.loc.Col
+			}
+			if robot.loc.Col >= maxCols {
+				robot.loc.Col = robot.loc.Col - maxCols
+			}
+			if robot.loc.Row < 0 {
+				robot.loc.Row = maxRows + robot.loc.Row
+			}
+			if robot.loc.Row >= maxRows {
+				robot.loc.Row = robot.loc.Row - maxRows
+			}
+			robots[i] = robot
+		}
+
+		stop := false
+		if *debug {
+			for row := 0; row < maxRows; row++ {
+				consecutive := 0
+				for col := 0; col < maxCols; col++ {
+					found := false
+					for _, robot := range robots {
+						if robot.loc.Row == row && robot.loc.Col == col {
+							fmt.Print("*")
+							consecutive += 1
+							if consecutive > 9 {
+								stop = true
+							}
+							found = true
+							break
+						}
+					}
+					if !found {
+						consecutive = 0
+						fmt.Print(" ")
+					}
+				}
+				fmt.Print("\n")
+			}
+		}
+		fmt.Println(seconds)
+		seconds++
+		if stop {
+			blah, _, _ := key.ReadLine()
+
+			if string(blah) == "EXIT" {
+				break
+			}
+		}
+	}
 
 	return result
 }
@@ -105,9 +173,15 @@ func main() {
 	inputFile, _ := os.ReadFile("input.txt")
 	input := strings.Split(string(inputFile), "\n")
 
+	//exampleFile, _ := os.ReadFile("example.txt")
+	//example := strings.Split(string(exampleFile), "\n")
+
 	partOneResult := PartOne(input, 103, 101)
 	fmt.Println("Part One Result:", partOneResult)
 
-	partTwoResult := PartTwo(input)
+	//partTwoTest := PartTwo(example, 7, 11)
+	//fmt.Println("Part Two Result:", partTwoTest)
+
+	partTwoResult := PartTwo(input, 103, 101)
 	fmt.Println("Part Two Result:", partTwoResult)
 }
