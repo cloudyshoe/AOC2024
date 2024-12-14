@@ -128,39 +128,39 @@ func PartTwo(input []string, maxRows int, maxCols int) int {
 		}
 
 		stop := false
-		if *debug {
-			for row := 0; row < maxRows; row++ {
-				consecutive := 0
-				for col := 0; col < maxCols; col++ {
-					found := false
-					for _, robot := range robots {
-						if robot.loc.Row == row && robot.loc.Col == col {
-							fmt.Print("*")
-							consecutive += 1
-							if consecutive > 9 {
-								stop = true
-							}
-							found = true
-							break
+		out := ""
+		for row := 0; row < maxRows; row++ {
+			consecutive := 0
+			for col := 0; col < maxCols; col++ {
+				found := false
+				for _, robot := range robots {
+					if robot.loc.Row == row && robot.loc.Col == col {
+						out += "*"
+						consecutive += 1
+						if consecutive > 9 {
+							stop = true
 						}
-					}
-					if !found {
-						consecutive = 0
-						fmt.Print(" ")
+						found = true
+						break
 					}
 				}
-				fmt.Print("\n")
+				if !found {
+					consecutive = 0
+					out += " "
+				}
 			}
+			out += "\n"
 		}
-		fmt.Println(seconds)
-		seconds++
 		if stop {
+			fmt.Print(out)
+			fmt.Println(seconds)
 			blah, _, _ := key.ReadLine()
 
 			if string(blah) == "EXIT" {
 				break
 			}
 		}
+		seconds++
 	}
 
 	return result

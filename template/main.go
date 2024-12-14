@@ -2,9 +2,12 @@ package main
 
 import (
     "os"
+	"flag"
     "fmt"
     "strings"
 )
+
+var debug *bool = flag.Bool("debug", false, "Print debug statements")
 
 func PartOne(input []string) int  {
     result := 0
@@ -19,6 +22,9 @@ func PartTwo(input []string) int {
 }
 
 func main () {
+
+	flag.Parse()
+
     inputFile, _ := os.ReadFile("input.txt")
     input := strings.Split(string(inputFile), "\n")
 
