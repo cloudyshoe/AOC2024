@@ -2,7 +2,6 @@ package main
 
 import (
 	"aoc/utils"
-	"bufio"
 	"flag"
 	"fmt"
 	"os"
@@ -20,27 +19,14 @@ type Robot struct {
 func PartOne(input []string, maxRows int, maxCols int) int {
 	result := 1
 	robots := make([]Robot, len(input))
+	maxCoord := utils.Coord{Row: maxRows, Col: maxCols}
 
 	for i, line := range input {
 		robot := Robot{}
 		fmt.Sscanf(line, "p=%d,%d v=%d,%d", &robot.loc.Col, &robot.loc.Row, &robot.vel.Col, &robot.vel.Row)
-		seconds := 0
-		for seconds < 100 {
-			robot.loc = robot.loc.Add(robot.vel)
-			if robot.loc.Col < 0 {
-				robot.loc.Col = maxCols + robot.loc.Col
-			}
-			if robot.loc.Col >= maxCols {
-				robot.loc.Col = robot.loc.Col - maxCols
-			}
-			if robot.loc.Row < 0 {
-				robot.loc.Row = maxRows + robot.loc.Row
-			}
-			if robot.loc.Row >= maxRows {
-				robot.loc.Row = robot.loc.Row - maxRows
-			}
-			seconds++
-		}
+		robot.vel.Row *= 100
+		robot.vel.Col *= 100
+		robot.loc = robot.loc.AddMod(robot.vel, maxCoord)
 		robots[i] = robot
 		if *debug {
 			fmt.Println(robot)
@@ -93,9 +79,37 @@ func PartOne(input []string, maxRows int, maxCols int) int {
 	return result
 }
 
+func createVis(robots []Robot, maxRows, maxCols int) (string, bool) {
+	stop := false
+	out := ""
+	for row := 0; row < maxRows; row++ {
+		consecutive := 0
+		for col := 0; col < maxCols; col++ {
+			found := false
+			for _, robot := range robots {
+				if robot.loc.Row == row && robot.loc.Col == col {
+					out += "*"
+					found = true
+					if consecutive++; !stop && consecutive > 9 {
+						stop = true
+					}
+					break
+				}
+			}
+			if !found {
+				consecutive = 0
+				out += " "
+			}
+		}
+		out += "\n"
+	}
+	return out, stop
+}
+
 func PartTwo(input []string, maxRows int, maxCols int) int {
 	result := 0
 	robots := make([]Robot, len(input))
+	maxCoord := utils.Coord{Row: maxRows, Col: maxCols}
 	seconds := 1
 
 	for i, line := range input {
@@ -107,63 +121,28 @@ func PartTwo(input []string, maxRows int, maxCols int) int {
 		}
 	}
 
-	key := bufio.NewReader(os.Stdin)
-
 	for {
 		for i, robot := range robots {
-			robot.loc = robot.loc.Add(robot.vel)
-			if robot.loc.Col < 0 {
-				robot.loc.Col = maxCols + robot.loc.Col
-			}
-			if robot.loc.Col >= maxCols {
-				robot.loc.Col = robot.loc.Col - maxCols
-			}
-			if robot.loc.Row < 0 {
-				robot.loc.Row = maxRows + robot.loc.Row
-			}
-			if robot.loc.Row >= maxRows {
-				robot.loc.Row = robot.loc.Row - maxRows
-			}
+			robot.loc = robot.loc.AddMod(robot.vel, maxCoord)
 			robots[i] = robot
 		}
 
-		stop := false
-		out := ""
-		for row := 0; row < maxRows; row++ {
-			consecutive := 0
-			for col := 0; col < maxCols; col++ {
-				found := false
-				for _, robot := range robots {
-					if robot.loc.Row == row && robot.loc.Col == col {
-						out += "*"
-						consecutive += 1
-						if consecutive > 9 {
-							stop = true
-						}
-						found = true
-						break
-					}
-				}
-				if !found {
-					consecutive = 0
-					out += " "
-				}
-			}
-			out += "\n"
-		}
+		out, stop := createVis(robots, maxRows, maxCols)
+
 		if stop {
 			fmt.Print(out)
 			fmt.Println(seconds)
-			blah, _, _ := key.ReadLine()
+			//key := bufio.NewReader(os.Stdin)
+			//blah, _, _ := key.ReadLine()
 
-			if string(blah) == "EXIT" {
-				break
-			}
+			//if string(blah) == "EXIT" {
+			//	break
+			result = seconds
+			return result
 		}
 		seconds++
 	}
 
-	return result
 }
 
 func main() {

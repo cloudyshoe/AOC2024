@@ -19,6 +19,10 @@ func (p Coord) Add(q Coord) Coord {
 	return Coord{Col: p.Col + q.Col, Row: p.Row + q.Row}
 }
 
+func (p Coord) AddMod(q, m Coord) Coord {
+	return Coord{Col: ((p.Col+q.Col)%m.Col + m.Col) % m.Col, Row: ((p.Row+q.Row)%m.Row + m.Row) % m.Row}
+}
+
 func (p Coord) Sub(q Coord) Coord {
 	return Coord{Col: p.Col - q.Col, Row: p.Row - q.Row}
 }
@@ -52,11 +56,19 @@ var gridDirs = map[string]Coord{
 	"this": {Row: 0, Col: 0},
 }
 
-func (i HashGrid[T]) Dir(p Coord, str string) GridCell[T] {
+func (h HashGrid[T]) Dir(p Coord, str string) GridCell[T] {
 	point := p.Add(gridDirs[str])
-	val, exists := i[point]
+	val, exists := h[point]
 
 	return GridCell[T]{Exists: exists, Val: val, Point: point}
+}
+
+func (h HashGrid[T]) Clone() HashGrid[T] {
+	hashGrid := make(HashGrid[T], len(h))
+	for k, v := range h {
+		hashGrid[k] = v
+	}
+	return hashGrid
 }
 
 type Grid[T any] [][]T
@@ -100,4 +112,11 @@ func GCD(a, b int) int {
 
 func LCM(a, b int) int {
 	return Abs(a) * (Abs(b) / GCD(a, b))
+}
+
+func Min[T int | int8 | int16 | int32 | int64 | float32 | float64](a, b T) T {
+	if a < b {
+		return a
+	}
+	return b
 }
