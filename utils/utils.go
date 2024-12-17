@@ -120,3 +120,7 @@ func Min[T int | int8 | int16 | int32 | int64 | float32 | float64](a, b T) T {
 	}
 	return b
 }
+
+func Pow2[T int | int8 | int16 | int32 | int64 | uint | uint8 | uint16 | uint32 | uint64](exp T) T {
+	return (1 << exp)
+}
