@@ -27,6 +27,10 @@ func (p Coord) Sub(q Coord) Coord {
 	return Coord{Col: p.Col - q.Col, Row: p.Row - q.Row}
 }
 
+func (p Coord) Equals(q Coord) bool {
+	return p.Row == q.Row && p.Col == q.Col
+}
+
 func (p Coord) In(q Bounds) bool {
 	return q.Min.Col <= p.Col && p.Col < q.Max.Col &&
 		q.Min.Row <= p.Row && p.Row < q.Max.Row
@@ -44,7 +48,7 @@ type GridCell[T any] struct {
 	Point  Coord
 }
 
-var gridDirs = map[string]Coord{
+var GridDirs = map[string]Coord{
 	"n":    {Row: -1, Col: 0},
 	"ne":   {Row: -1, Col: 1},
 	"e":    {Row: 0, Col: 1},
@@ -57,7 +61,7 @@ var gridDirs = map[string]Coord{
 }
 
 func (h HashGrid[T]) Dir(p Coord, str string) GridCell[T] {
-	point := p.Add(gridDirs[str])
+	point := p.Add(GridDirs[str])
 	val, exists := h[point]
 
 	return GridCell[T]{Exists: exists, Val: val, Point: point}
@@ -75,7 +79,7 @@ type Grid[T any] [][]T
 
 func (g Grid[T]) Dir(c Coord, str string) GridCell[T] {
 	cell := GridCell[T]{}
-	cell.Point = c.Add(gridDirs[str])
+	cell.Point = c.Add(GridDirs[str])
 	if len(g) > 0 && len(g[0]) > 0 &&
 		cell.Point.Col >= 0 && cell.Point.Col < len(g[0]) &&
 		cell.Point.Row >= 0 && cell.Point.Row < len(g) {
