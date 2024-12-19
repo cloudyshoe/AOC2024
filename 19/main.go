@@ -1,7 +1,6 @@
 package main
 
 import (
-	"cmp"
 	"flag"
 	"fmt"
 	"os"
@@ -11,9 +10,57 @@ import (
 
 var debug *bool = flag.Bool("debug", false, "Print debug statements")
 
-func buildPattern(pattern string, towels []string, maxTowelSize int) bool {
+func connectSegments(idx, patternLen int, usefulTowels map[int][]int) bool {
 
-	return true
+	if idx == patternLen {
+		return true
+	}
+
+	segments, ok := usefulTowels[idx]
+
+	if !ok {
+		return false
+	}
+
+	for _, segmentLen := range segments {
+		connected := connectSegments(idx+segmentLen, patternLen, usefulTowels)
+		if connected {
+			return true
+		}
+	}
+
+	return false
+}
+
+func buildPattern(pattern string, towels []string) bool {
+	usefulTowels := make(map[int][]int)
+	patternLen := len(pattern)
+
+	for i := 0; i < len(pattern); i++ {
+		for j := i + 1; j <= len(pattern); j++ {
+			segment := pattern[i:j]
+			if slices.Contains(towels, segment) {
+				usefulTowels[i] = append(usefulTowels[i], len(segment))
+			}
+		}
+	}
+
+	_, ok := usefulTowels[0]
+	if !ok {
+		return false
+	}
+
+	connected := connectSegments(0, patternLen, usefulTowels)
+
+	if connected {
+		return true
+	}
+
+	if *debug {
+		fmt.Println(pattern, usefulTowels)
+	}
+
+	return false
 }
 
 func PartOne(input []string) int {
@@ -22,19 +69,19 @@ func PartOne(input []string) int {
 	towels := strings.Split(input[0], ", ")
 	patterns := strings.Split(input[1], "\n")
 
-	maxTowelSize := len(slices.MaxFunc(towels, func(a, b string) int {
-		return cmp.Compare(len(a), len(b))
-	}))
+	//maxTowelSize := len(slices.MaxFunc(towels, func(a, b string) int {
+	//	return cmp.Compare(len(a), len(b))
+	//}))
 
 	if *debug {
 		fmt.Println(patterns)
 	}
 
 	for _, pattern := range patterns {
-		if buildPattern(pattern, towels, maxTowelSize) {
+		if buildPattern(pattern, towels) {
 			result += 1
 		}
-		fmt.Println(result)
+		//fmt.Println(result)
 	}
 
 	return result
