@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"iter"
 	"os"
+	"slices"
 	"strings"
+	"time"
 
 	"github.com/fzipp/astar"
 )
@@ -46,6 +48,25 @@ func PrintGrid(grid utils.HashGrid[string], rows, cols int) {
 
 }
 
+func PrintGridPath(grid utils.HashGrid[string], path astar.Path[utils.Coord], rows, cols int) {
+	out := ""
+
+	for row := range rows {
+		for col := range cols {
+			coord := utils.Coord{Row: row, Col: col}
+			if slices.Contains(path, coord) {
+				out += "O"
+			} else {
+				out += grid[coord]
+			}
+		}
+		out += "\n"
+	}
+
+	fmt.Println(out)
+
+}
+
 func pointDist(p, q utils.Coord) float64 {
 	return 1
 }
@@ -76,7 +97,7 @@ func PartOne(input []string, rows, cols, bytes int) int {
 	}
 
 	if *debug {
-		PrintGrid(grid.grid, rows, cols)
+		//PrintGrid(grid.grid, rows, cols)
 	}
 
 	path := astar.FindPath(grid, start, end, pointDist, pointDist)
@@ -106,15 +127,22 @@ func PartTwo(input []string, rows, cols int) (result string) {
 			}
 		}
 
-		if *debug {
-			PrintGrid(grid.grid, rows, cols)
-			fmt.Printf("Placed %d of %d\r", i+1, len(input))
-		}
-
 		path := astar.FindPath(grid, start, end, pointDist, pointDist)
 		//if *debug {
 		//	fmt.Println(len(path) - 1)
 		//}
+
+		if *debug {
+			fmt.Print("\033[H")
+			//cmd := exec.Command("clear")
+			//cmd.Stdout = os.Stdout
+			//cmd.Run()
+			PrintGridPath(grid.grid, path, rows, cols)
+			fmt.Printf("Placed %d of %d\r", i+1, len(input))
+			if rows < 10 {
+				time.Sleep(1 * time.Second)
+			}
+		}
 
 		if path == nil {
 			result = line
