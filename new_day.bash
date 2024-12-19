@@ -15,10 +15,5 @@ if ! [[ "$1" =~ ^[0-9]+$ ]]; then
     exit 1
 fi
 
-if [[ -d "$1" ]]; then
-	echo "Directory \"$1\" already exists"
-	exit 1
-fi
-
 mkdir "$1" &&
 cp template/* "$1"/
