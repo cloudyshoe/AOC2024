@@ -6,6 +6,8 @@ import (
 	"os"
 	"slices"
 	"strings"
+	"sync"
+	"sync/atomic"
 )
 
 var debug *bool = flag.Bool("debug", false, "Print debug statements")
@@ -68,9 +70,7 @@ type Header struct {
 	patternLen int
 }
 
-var cache = make(map[Header]int)
-
-func connectSegmentsCount(idx, patternLen int, usefulTowels map[int][]int) int {
+func connectSegmentsCount(idx, patternLen int, usefulTowels map[int][]int, cache map[Header]int) int {
 	result := 0
 
 	key := Header{idx: idx, patternLen: patternLen}
@@ -90,7 +90,7 @@ func connectSegmentsCount(idx, patternLen int, usefulTowels map[int][]int) int {
 
 	if ok {
 		for _, segmentLen := range segments {
-			result += connectSegmentsCount(idx+segmentLen, patternLen, usefulTowels)
+			result += connectSegmentsCount(idx+segmentLen, patternLen, usefulTowels, cache)
 		}
 	}
 
@@ -113,8 +113,8 @@ func combinations(pattern string, towels []string) int {
 		}
 	}
 
-	cache = make(map[Header]int)
-	result = connectSegmentsCount(0, patternLen, usefulTowels)
+	cache := make(map[Header]int)
+	result = connectSegmentsCount(0, patternLen, usefulTowels, cache)
 
 	if *debug {
 		fmt.Println(pattern, usefulTowels)
@@ -143,7 +143,7 @@ func PartOne(input []string) int {
 }
 
 func PartTwo(input []string) int {
-	result := 0
+	//result := 0
 
 	towels := strings.Split(input[0], ", ")
 	patterns := strings.Split(input[1], "\n")
@@ -152,11 +152,21 @@ func PartTwo(input []string) int {
 		fmt.Println(patterns)
 	}
 
+	var result atomic.Int64
+	var wg sync.WaitGroup
+
 	for _, pattern := range patterns {
-		result += combinations(pattern, towels)
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			tmp := combinations(pattern, towels)
+			result.Add(int64(tmp))
+		}()
 	}
 
-	return result
+	wg.Wait()
+
+	return int(result.Load())
 }
 
 func main() {

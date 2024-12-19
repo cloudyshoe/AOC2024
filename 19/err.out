@@ -1,0 +1,2435 @@
+fatal error: concurrent map read and map write
+
+goroutine 14 [running]:
+main.connectSegmentsCount(0xa, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:86 +0x4b
+main.connectSegmentsCount(0x9, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x8, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x7, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x6, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x5, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x4, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x2, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x1, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.connectSegmentsCount(0x0, 0x2c, 0xc000416000)
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:96 +0x130
+main.combinations({0xc0000c2d1e, 0x2c}, {0xc00007c008, 0x1bf, 0x0?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:120 +0xc5
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 1 [semacquire]:
+sync.runtime_Semacquire(0xc0002cc680?)
+	/usr/lib/golang/src/runtime/sema.go:71 +0x25
+sync.(*WaitGroup).Wait(0xc0000c2b58?)
+	/usr/lib/golang/src/sync/waitgroup.go:118 +0x48
+main.PartTwo({0xc0000c8000, 0x2, 0xc0000e1ee0?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:171 +0x258
+main.main()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:201 +0x2c5
+
+goroutine 5 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:97
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c2b58, 0x3a}, {0xc00007c008, 0x1bf, 0x0?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2cc
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 6 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 7 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 8 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 9 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 10 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 11 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 13 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 15 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 16 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:98
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c2d86, 0x3a}, {0xc00007c008, 0x1bf, 0x0?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2e2
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 33 [runnable]:
+main.combinations({0xc0000c2dc1, 0x34}, {0xc00007c008, 0x1bf, 0x0?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:114 +0x21b
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 34 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 35 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 36 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 38 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 39 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 40 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 41 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 42 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 43 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 44 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 45 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 46 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 47 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 48 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 49 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:168 +0x83
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 50 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 51 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 52 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 53 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 54 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 55 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 56 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 57 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 58 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 59 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 60 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 62 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:97
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c3375, 0x3a}, {0xc00007c008, 0x1bf, 0x1?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2cc
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 63 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 64 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 65 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 66 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 67 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 68 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 69 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 70 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 71 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 72 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 73 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 74 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 75 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 76 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 77 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 78 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 79 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 80 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 81 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 82 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 83 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 84 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 86 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:98
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c382c, 0x3b}, {0xc00007c008, 0x1bf, 0x4?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2e2
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 87 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 88 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 89 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 90 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 91 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 92 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 93 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 94 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 95 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 96 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 97 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 98 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 99 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 100 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 101 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 102 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 103 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 104 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 105 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 106 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 107 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 108 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 109 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 110 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 111 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 112 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 113 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 114 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 115 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 116 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 117 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 118 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 119 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 120 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 121 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 122 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 123 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 124 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 125 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 126 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 127 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 128 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 129 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 130 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 131 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 132 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 133 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 134 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 135 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 136 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 137 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 138 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 139 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 140 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 141 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 142 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 143 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 144 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 145 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 146 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 147 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 148 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 149 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 150 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 151 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 152 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 153 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 154 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 155 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 156 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 157 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 158 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 159 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 160 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 161 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 162 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 163 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 164 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 165 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 166 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 167 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 168 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 169 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 170 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 171 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 172 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 173 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 174 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 175 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 176 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 177 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 178 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 179 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 180 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 181 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 182 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 183 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 184 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 185 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 186 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 187 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 188 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 189 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 190 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 191 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 192 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 193 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 195 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 196 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 197 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 198 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 199 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 200 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 201 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 202 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 203 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 204 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 205 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 206 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 207 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 208 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 209 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 210 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 211 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 212 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 213 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 214 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 215 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 216 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 217 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 218 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 219 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 220 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 221 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 222 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 223 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 224 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 225 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 226 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 227 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 228 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 229 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 230 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 231 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 232 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 233 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 234 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 235 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 236 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 237 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 238 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 239 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 240 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 241 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 242 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 243 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 244 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 245 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 246 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 247 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 248 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 249 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 250 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:98
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c58d8, 0x2b}, {0xc00007c008, 0x1bf, 0xd?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2de
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 251 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:98
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c5904, 0x2b}, {0xc00007c008, 0x1bf, 0x0?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2de
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 252 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 253 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 254 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 255 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 256 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 257 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 258 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 259 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 260 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 261 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 262 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 263 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 264 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 265 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 266 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 267 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 268 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 269 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 270 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 271 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 272 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 273 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 274 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 275 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 276 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 277 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 278 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 279 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 280 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 281 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 282 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 283 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 284 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 285 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 286 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 287 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 288 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 289 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 290 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 291 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 292 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 293 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 294 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 295 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 296 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 297 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 298 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 299 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 300 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 301 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 302 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 303 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 304 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 305 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 306 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 309 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 310 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 311 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 312 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 313 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 314 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 315 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 316 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 317 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 318 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 319 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 320 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 321 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 322 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 323 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 324 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 325 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 326 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 327 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 328 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 329 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 330 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 331 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 332 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 333 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 334 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 335 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 336 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 337 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 338 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 339 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 340 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 341 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 342 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 343 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 344 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 345 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 346 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 347 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 348 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 349 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 350 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 351 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 352 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 353 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 354 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 355 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 356 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 357 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 358 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 359 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 360 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 361 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 362 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 363 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 364 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:98
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c6f41, 0x39}, {0xc00007c008, 0x1bf, 0x1?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2e5
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 365 [runnable]:
+slices.Index[...](...)
+	/usr/lib/golang/src/slices/slices.go:98
+slices.Contains[...](...)
+	/usr/lib/golang/src/slices/slices.go:118
+main.combinations({0xc0000c6f7b, 0x32}, {0xc00007c008, 0x1bf, 0x0?})
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:113 +0x2de
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:166 +0x65
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 366 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 367 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 368 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 369 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 370 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 371 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 372 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 373 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 374 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 375 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 376 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 377 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 378 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 379 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 380 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 381 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 382 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 383 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 384 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 385 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 386 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 387 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 388 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 389 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 390 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 391 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 392 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 393 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 394 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 395 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 396 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 397 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 398 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 399 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 400 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 401 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 402 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 403 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 404 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 405 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 406 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 407 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 408 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 409 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 410 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 411 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 412 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 413 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 414 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 415 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 416 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 417 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 418 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
+
+goroutine 419 [runnable]:
+main.PartTwo.func1()
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164
+created by main.PartTwo in goroutine 1
+	/home/cloudy/Documents/Programming/AOC2024/19/main.go:164 +0x18f
