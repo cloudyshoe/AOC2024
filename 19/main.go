@@ -63,15 +63,71 @@ func buildPattern(pattern string, towels []string) bool {
 	return false
 }
 
+type Header struct {
+	idx        int
+	patternLen int
+}
+
+var cache = make(map[Header]int)
+
+func connectSegmentsCount(idx, patternLen int, usefulTowels map[int][]int) int {
+	result := 0
+
+	key := Header{idx: idx, patternLen: patternLen}
+
+	if idx == patternLen {
+		cache[key] = 1
+		return 1
+	}
+
+	stored, ok := cache[key]
+
+	if ok {
+		return stored
+	}
+
+	segments, ok := usefulTowels[idx]
+
+	if ok {
+		for _, segmentLen := range segments {
+			result += connectSegmentsCount(idx+segmentLen, patternLen, usefulTowels)
+		}
+	}
+
+	cache[key] = result
+
+	return result
+}
+
+func combinations(pattern string, towels []string) int {
+	usefulTowels := make(map[int][]int)
+	patternLen := len(pattern)
+	result := 0
+
+	for i := 0; i < len(pattern); i++ {
+		for j := i + 1; j <= len(pattern); j++ {
+			segment := pattern[i:j]
+			if slices.Contains(towels, segment) {
+				usefulTowels[i] = append(usefulTowels[i], len(segment))
+			}
+		}
+	}
+
+	cache = make(map[Header]int)
+	result = connectSegmentsCount(0, patternLen, usefulTowels)
+
+	if *debug {
+		fmt.Println(pattern, usefulTowels)
+	}
+
+	return result
+}
+
 func PartOne(input []string) int {
 	result := 0
 
 	towels := strings.Split(input[0], ", ")
 	patterns := strings.Split(input[1], "\n")
-
-	//maxTowelSize := len(slices.MaxFunc(towels, func(a, b string) int {
-	//	return cmp.Compare(len(a), len(b))
-	//}))
 
 	if *debug {
 		fmt.Println(patterns)
@@ -81,7 +137,6 @@ func PartOne(input []string) int {
 		if buildPattern(pattern, towels) {
 			result += 1
 		}
-		//fmt.Println(result)
 	}
 
 	return result
@@ -89,6 +144,17 @@ func PartOne(input []string) int {
 
 func PartTwo(input []string) int {
 	result := 0
+
+	towels := strings.Split(input[0], ", ")
+	patterns := strings.Split(input[1], "\n")
+
+	if *debug {
+		fmt.Println(patterns)
+	}
+
+	for _, pattern := range patterns {
+		result += combinations(pattern, towels)
+	}
 
 	return result
 }
