@@ -11,26 +11,23 @@ import (
 
 var debug *bool = flag.Bool("debug", false, "Print debug statements")
 
+func next(secret int) int {
+	secret ^= secret * 64
+	secret %= 16777216
+	secret ^= secret / 32
+	secret %= 16777216
+	secret ^= secret * 2048
+	secret = secret % 16777216
+	return secret
+}
+
 func PartOne(input []string) int {
 	result := 0
 
 	for _, line := range input {
 		secret := utils.Atoi(line)
-		if *debug {
-			fmt.Println(secret)
-		}
-		i := 0
-		for i < 2000 {
-			secret ^= secret * 64
-			secret %= 16777216
-			secret ^= secret / 32
-			secret %= 16777216
-			secret ^= secret * 2048
-			secret = secret % 16777216
-			i++
-		}
-		if *debug {
-			fmt.Println(secret)
+		for range 2000 {
+			secret = next(secret)
 		}
 		result += secret
 	}
@@ -48,6 +45,20 @@ func (w *WormSet) tryAdd(change ChangeSeq, bananas int) {
 	}
 }
 
+func numToBananas(secret int) int {
+	bananaStr := strconv.Itoa(secret)
+	bananaLen := len(bananaStr)
+	return utils.Atoi(bananaStr[bananaLen-1 : bananaLen])
+}
+
+func rotateChanges(changeSeq ChangeSeq, bananas, prevBananas int) ChangeSeq {
+	changeSeq[0] = changeSeq[1]
+	changeSeq[1] = changeSeq[2]
+	changeSeq[2] = changeSeq[3]
+	changeSeq[3] = bananas - prevBananas
+	return changeSeq
+}
+
 func PartTwo(input []string) int {
 	result := 0
 	allChanges := make([]WormSet, 0, len(input))
@@ -59,26 +70,12 @@ func PartTwo(input []string) int {
 			fmt.Println(secret)
 		}
 		changes := WormSet{}
-		bananaStr := strconv.Itoa(secret)
-		bananaLen := len(bananaStr)
-		prevBananas := utils.Atoi(bananaStr[bananaLen-1 : bananaLen])
-		i := 0
-		for i < 2000 {
-			bananas := 0
-			secret ^= secret * 64
-			secret %= 16777216
-			secret ^= secret / 32
-			secret %= 16777216
-			secret ^= secret * 2048
-			secret = secret % 16777216
-			str := strconv.Itoa(secret)
-			lenStr := len(str)
-			bananas = utils.Atoi(str[lenStr-1 : lenStr])
+		prevBananas := numToBananas(secret)
+		for i := 0; i < 2000; i++ {
+			secret = next(secret)
+			bananas := numToBananas(secret)
 			if i > 3 {
-				changeSeq[0] = changeSeq[1]
-				changeSeq[1] = changeSeq[2]
-				changeSeq[2] = changeSeq[3]
-				changeSeq[3] = bananas - prevBananas
+				changeSeq = rotateChanges(changeSeq, bananas, prevBananas)
 				changes.tryAdd(changeSeq, bananas)
 			} else if i == 3 {
 				changeSeq[i] = bananas - prevBananas
@@ -87,12 +84,8 @@ func PartTwo(input []string) int {
 				changeSeq[i] = bananas - prevBananas
 			}
 			prevBananas = bananas
-			i++
 		}
 		allChanges = append(allChanges, changes)
-		if *debug {
-			fmt.Println(secret)
-		}
 	}
 
 	combinedChanges := WormSet{}
