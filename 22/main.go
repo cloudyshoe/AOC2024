@@ -35,23 +35,13 @@ func PartOne(input []string) int {
 	return result
 }
 
-type ChangeSeq [4]int
-type WormSet map[ChangeSeq]int
-
-func (w *WormSet) tryAdd(change ChangeSeq, bananas int) {
-	worm := *w
-	if _, ok := worm[change]; !ok {
-		worm[change] = bananas
-	}
-}
-
 func numToBananas(secret int) int {
 	bananaStr := strconv.Itoa(secret)
 	bananaLen := len(bananaStr)
 	return utils.Atoi(bananaStr[bananaLen-1 : bananaLen])
 }
 
-func rotateChanges(changeSeq ChangeSeq, bananas, prevBananas int) ChangeSeq {
+func rotateChanges(changeSeq [4]int, bananas, prevBananas int) [4]int {
 	changeSeq[0] = changeSeq[1]
 	changeSeq[1] = changeSeq[2]
 	changeSeq[2] = changeSeq[3]
@@ -61,38 +51,30 @@ func rotateChanges(changeSeq ChangeSeq, bananas, prevBananas int) ChangeSeq {
 
 func PartTwo(input []string) int {
 	result := 0
-	allChanges := make([]WormSet, 0, len(input))
+	combinedChanges := make(map[[4]int]int)
 
 	for _, line := range input {
-		changeSeq := ChangeSeq{}
+		changeSeq := [4]int{}
 		secret := utils.Atoi(line)
-		if *debug {
-			fmt.Println(secret)
-		}
-		changes := WormSet{}
+		changes := make(map[[4]int]struct{})
 		prevBananas := numToBananas(secret)
 		for i := 0; i < 2000; i++ {
 			secret = next(secret)
 			bananas := numToBananas(secret)
-			if i > 3 {
-				changeSeq = rotateChanges(changeSeq, bananas, prevBananas)
-				changes.tryAdd(changeSeq, bananas)
+			if i < 3 {
+				changeSeq[i] = bananas - prevBananas
 			} else if i == 3 {
 				changeSeq[i] = bananas - prevBananas
-				changes.tryAdd(changeSeq, bananas)
+				changes[changeSeq] = struct{}{}
+				combinedChanges[changeSeq] += bananas
 			} else {
-				changeSeq[i] = bananas - prevBananas
+				changeSeq = rotateChanges(changeSeq, bananas, prevBananas)
+				if _, ok := changes[changeSeq]; !ok {
+					changes[changeSeq] = struct{}{}
+					combinedChanges[changeSeq] += bananas
+				}
 			}
 			prevBananas = bananas
-		}
-		allChanges = append(allChanges, changes)
-	}
-
-	combinedChanges := WormSet{}
-
-	for _, set := range allChanges {
-		for k, v := range set {
-			combinedChanges[k] += v
 		}
 	}
 
