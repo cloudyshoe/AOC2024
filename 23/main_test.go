@@ -26,7 +26,7 @@ func TestPartTwo(t *testing.T) {
 	got := PartTwo(input)
 
 	if got != want {
-		t.Errorf("expected '%d' but got '%d'", want, got)
+		t.Errorf("expected '%s' but got '%s'", want, got)
 	}
 }
 

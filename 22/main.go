@@ -5,10 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
-	"sync"
-	"sync/atomic"
 )
 
 var debug *bool = flag.Bool("debug", false, "Print debug statements")
@@ -23,84 +20,65 @@ func next(secret int) int {
 	return secret
 }
 
+func next2k(secret int, c chan int) {
+	for range 2000 {
+		secret = next(secret)
+	}
+	c <- secret
+}
+
 func PartOne(input []string) int {
 	result := 0
 
-	var wg sync.WaitGroup
-	var acc atomic.Int64
+	c := make(chan int)
 	for _, line := range input {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			secret := utils.Atoi(line)
-			for range 2000 {
-				secret = next(secret)
-			}
-			acc.Add(int64(secret))
-		}()
+		secret := utils.Atoi(line)
+		go next2k(secret, c)
 	}
 
-	wg.Wait()
-
-	result = int(acc.Load())
+	for range input {
+		result += <-c
+	}
 
 	return result
-}
-
-func numToBananas(secret int) int {
-	bananaStr := strconv.Itoa(secret)
-	bananaLen := len(bananaStr)
-	return utils.Atoi(bananaStr[bananaLen-1 : bananaLen])
-}
-
-func rotateChanges(changeSeq [4]int, bananas, prevBananas int) [4]int {
-	changeSeq[0] = changeSeq[1]
-	changeSeq[1] = changeSeq[2]
-	changeSeq[2] = changeSeq[3]
-	changeSeq[3] = bananas - prevBananas
-	return changeSeq
 }
 
 func PartTwo(input []string) int {
 	result := 0
 	allChanges := make([]map[[4]int]int, len(input))
 	combinedChanges := make(map[[4]int]int)
+	c := make(chan map[[4]int]int, len(input))
 
-	var wg sync.WaitGroup
-
-	for i, line := range input {
-		wg.Add(1)
+	for _, line := range input {
 		go func() {
-			defer wg.Done()
-
 			changeSeq := [4]int{}
 			secret := utils.Atoi(line)
 			changes := make(map[[4]int]int)
-			prevBananas := numToBananas(secret)
+			prevBananas := secret % 10
 			for i := 0; i < 2000; i++ {
 				secret = next(secret)
-				bananas := numToBananas(secret)
+				bananas := secret % 10
+				diff := bananas - prevBananas
 				if i < 3 {
-					changeSeq[i] = bananas - prevBananas
+					changeSeq[i] = diff
 				} else if i == 3 {
-					changeSeq[i] = bananas - prevBananas
+					changeSeq[i] = diff
 					changes[changeSeq] = bananas
 				} else {
-					changeSeq = rotateChanges(changeSeq, bananas, prevBananas)
+					changeSeq = [4]int{changeSeq[1], changeSeq[2], changeSeq[3], diff}
 					if _, ok := changes[changeSeq]; !ok {
 						changes[changeSeq] = bananas
 					}
 				}
 				prevBananas = bananas
 			}
-			allChanges[i] = changes
+			c <- changes
 		}()
 	}
 
-	wg.Wait()
-
-	for _, changes := range allChanges {
-		for k, v := range changes {
+	for range input {
+		allChanges = append(allChanges, <-c)
+		for k, v := range allChanges[len(allChanges)-1] {
 			combinedChanges[k] += v
 		}
 	}

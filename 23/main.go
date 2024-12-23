@@ -55,18 +55,8 @@ func PartOne(input []string) int {
 	return result
 }
 
-func PartTwo(input []string) int {
-	result := 0
-	connections := make(map[string][]string, len(input))
-	//password := make([]string, 0, 100)
-
-	for _, line := range input {
-		computers := strings.Split(line, "-")
-		connections[computers[0]] = append(connections[computers[0]], computers[1])
-		connections[computers[1]] = append(connections[computers[1]], computers[0])
-	}
-
-	fmt.Println(connections)
+func PartTwo(input []string) string {
+	result := ""
 
 	return result
 }
