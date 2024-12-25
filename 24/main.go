@@ -53,6 +53,11 @@ func PartOne(input []string) int {
 		gates = append(gates, gate)
 	}
 
+	if *debug {
+		fmt.Println(wires)
+		fmt.Println(gates)
+	}
+
 	unresolved := true
 	for unresolved {
 		resolved := 0
@@ -67,7 +72,6 @@ func PartOne(input []string) int {
 				wires[gate.wire] = runGate(left, right, gate.gate)
 				gate.resolved = true
 				gates[i] = gate
-				break
 			}
 		}
 		if resolved == len(gates) {
